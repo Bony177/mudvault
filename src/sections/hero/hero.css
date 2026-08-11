@@ -2,10 +2,72 @@
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
+  overflow: hidden;
 }
 
+/* =========================
+   BACKGROUND
+========================= */
+
 .hero-background {
+  position: absolute;
+  inset: 0;
+
   width: 100%;
   height: 100%;
+
   display: block;
+  object-fit: cover;
+
+  z-index: 1;
+}
+
+
+/* =========================
+   TITLE CONTAINER
+========================= */
+
+.hero-content {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 5;
+
+  pointer-events: none;
+}
+
+
+/* =========================
+   MUDVAULT IMAGE
+========================= */
+
+.hero-title {
+  position: absolute;
+  top: 30%;
+
+
+  width: clamp(280px, 87vw, 1800px);
+  height: auto;
+
+  display: block;
+
+  object-fit: contain;
+
+  /* =========================
+     ADJUSTABLE BLUR
+     Change this value!
+     ========================= */
+  filter: blur(0px);
+
+  /* Optional glow */
+  filter: blur(0px)
+          drop-shadow(0 0 3px rgba(214, 62, 38, 0.8))
+          drop-shadow(0 0 12px rgba(214, 62, 38, 0.35));
+
+
+  opacity: 1;
 }
