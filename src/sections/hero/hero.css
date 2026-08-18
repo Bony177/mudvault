@@ -109,7 +109,7 @@
 .hero-title {
   position: absolute;
 
-  top: 30%;
+  top: 23%;
 
   width: clamp(280px, 87vw, 1800px);
 

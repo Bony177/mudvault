@@ -1,0 +1,202 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap");
+
+/* ================================
+   NAVBAR
+================================ */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 90px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 28px;
+
+  box-sizing: border-box;
+
+  background: transparent;
+
+  z-index: 9999;
+}
+
+
+/* ================================
+   LOGO
+================================ */
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+
+  height: 100%;
+}
+
+.navbar-logo img {
+  width: 150px;
+  height: auto;
+
+  display: block;
+
+  object-fit: contain;
+}
+
+
+/* ================================
+   RIGHT SIDE
+================================ */
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+
+  gap: 34px;
+}
+
+
+/* ================================
+   NAV LINKS
+================================ */
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+
+  gap: 34px;
+}
+
+.navbar-links a {
+  position: relative;
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+
+  letter-spacing: 1.2px;
+
+  transition: opacity 0.25s ease;
+}
+
+.navbar-links a:hover {
+  opacity: 0.65;
+}
+
+
+/* ================================
+   HAMBURGER
+================================ */
+
+.menu-button {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 0;
+
+  background: transparent;
+  border: none;
+
+  cursor: pointer;
+}
+
+.menu-button span {
+  display: block;
+
+  width: 27px;
+  height: 2px;
+
+  background: #ffffff;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+
+/* ================================
+   HOVER HAMBURGER
+================================ */
+
+.menu-button:hover span:nth-child(1) {
+  transform: translateX(4px);
+}
+
+.menu-button:hover span:nth-child(3) {
+  transform: translateX(-4px);
+}
+
+
+/* ================================
+   TABLET
+================================ */
+
+@media (max-width: 900px) {
+
+  .navbar {
+    height: 80px;
+
+    padding: 0 22px;
+  }
+
+  .navbar-logo img {
+    width: 130px;
+  }
+
+  .navbar-links {
+    gap: 20px;
+  }
+
+  .navbar-links a {
+    font-size: 13px;
+  }
+
+  .navbar-right {
+    gap: 22px;
+  }
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 700px) {
+
+  .navbar {
+    height: 72px;
+
+    padding: 0 18px;
+  }
+
+  .navbar-logo img {
+    width: 115px;
+  }
+
+  /* Hide normal navigation on mobile */
+  .navbar-links {
+    display: none;
+  }
+
+  .navbar-right {
+    gap: 0;
+  }
+
+  .menu-button {
+    width: 36px;
+  }
+}
