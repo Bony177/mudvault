@@ -78,6 +78,9 @@
   transform: translateZ(0);
 
   -webkit-transform: translateZ(0);
+
+  /* Blur filter - adjust --video-blur value to tweak (0px to 20px recommended) */
+  filter: blur(var(--video-blur, 1px));
 }
 
 
