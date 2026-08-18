@@ -1,38 +1,99 @@
+/* =========================================
+   HERO SCROLL AREA
+========================================= */
+
 .hero {
   position: relative;
+
   width: 100%;
-  aspect-ratio: 16 / 9;
+
+  height: 1000vh;
+
+  overflow: clip;
+}
+
+
+/* =========================================
+   STICKY SCREEN
+
+   This stays visible while the hero
+   scrolls through its 1000vh duration.
+========================================= */
+
+.hero-sticky {
+  position: sticky;
+
+  top: 0;
+
+  width: 100%;
+
+  height: 100vh;
+
   overflow: hidden;
 }
 
-/* =========================
+
+/* =========================================
    BACKGROUND
-========================= */
+========================================= */
 
 .hero-background {
   position: absolute;
+
   inset: 0;
 
   width: 100%;
   height: 100%;
 
   display: block;
+
   object-fit: cover;
 
   z-index: 1;
 }
 
 
-/* =========================
+/* =========================================
+   BIKE VIDEO
+========================================= */
+
+.hero-bike {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  object-position: center;
+
+  z-index: 7;
+
+  pointer-events: none;
+
+  display: block;
+
+  transform: translateZ(0);
+
+  -webkit-transform: translateZ(0);
+}
+
+
+/* =========================================
    TITLE CONTAINER
-========================= */
+========================================= */
 
 .hero-content {
   position: absolute;
+
   inset: 0;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   z-index: 5;
@@ -41,33 +102,27 @@
 }
 
 
-/* =========================
-   MUDVAULT IMAGE
-========================= */
+/* =========================================
+   MUDVAULT TITLE
+========================================= */
 
 .hero-title {
   position: absolute;
+
   top: 30%;
 
-
   width: clamp(280px, 87vw, 1800px);
+
   height: auto;
 
   display: block;
 
   object-fit: contain;
 
-  /* =========================
-     ADJUSTABLE BLUR
-     Change this value!
-     ========================= */
-  filter: blur(0px);
-
-  /* Optional glow */
-  filter: blur(0px)
-          drop-shadow(0 0 3px rgba(214, 62, 38, 0.8))
-          drop-shadow(0 0 12px rgba(214, 62, 38, 0.35));
-
+  filter:
+    blur(0px)
+    drop-shadow(0 0 3px rgba(214, 62, 38, 0.8))
+    drop-shadow(0 0 12px rgba(214, 62, 38, 0.35));
 
   opacity: 1;
 }
