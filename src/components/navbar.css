@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 /* ================================
    NAVBAR
 ================================ */
@@ -16,7 +16,7 @@
   align-items: center;
   justify-content: space-between;
 
-  padding: 0 28px;
+  padding: 0 50px;
 
   box-sizing: border-box;
 
@@ -77,8 +77,8 @@
 
   text-decoration: none;
 
-  font-family: "Barlow Condensed", sans-serif;
-  font-size: 15px;
+  font-family: "anton", sans-serif;
+  font-size: 20px;
   font-weight: 700;
 
   letter-spacing: 1.2px;
