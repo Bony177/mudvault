@@ -4,6 +4,7 @@ import "./Hero.css";
 import background from "../../assets/background.webp";
 import mudvaultTitle from "../../assets/mudvault.png";
 import bikeVideo from "../../assets/bike.webm";
+import logos from "../../assets/logos.png";
 
 function Hero() {
   const heroRef = useRef(null);
@@ -85,6 +86,7 @@ function Hero() {
         {/* Title */}
         <div className="hero-content">
           <img className="hero-title" src={mudvaultTitle} alt="MUDVAULT" />
+          <img className="hero-logos" src={logos} alt="Partner logos" />
         </div>
       </div>
     </section>

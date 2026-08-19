@@ -83,6 +83,34 @@
   filter: blur(var(--video-blur, 1px));
 }
 
+/* =========================================
+   LOGOS
+========================================= */
+
+.hero-logos {
+  position: absolute;
+
+  /* Adjust vertical position */
+  top: 15%;
+
+  /* Responsive size */
+  width: clamp(180px, 40vw, 800px);
+
+  height: auto;
+
+  display: block;
+  object-fit: contain;
+  filter: blur(0.7px);
+
+  /* Adjust horizontal position */
+  left: 26.5%;
+  transform: translateX(-50%);
+
+  z-index: 6;
+
+  pointer-events: none;
+}
+
 
 /* =========================================
    TITLE CONTAINER
