@@ -1,0 +1,669 @@
+/* =========================================
+   TRACK SECTION
+========================================= */
+
+.track-section {
+  position: relative;
+
+  width: 100%;
+
+  height: 700vh;
+
+  background: #ffffff;
+
+  overflow: clip;
+
+  color: #101bea;
+}
+
+
+/* =========================================
+   STICKY SCREEN
+========================================= */
+
+.track-sticky {
+  position: sticky;
+
+  top: 0;
+
+  width: 100%;
+
+  height: 100vh;
+
+  overflow: hidden;
+
+  background: #ffffff;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.track-header {
+  position: absolute;
+
+  top: 28px;
+
+  left: 3.2vw;
+
+  right: 3.2vw;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  z-index: 30;
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.track-logo {
+  font-family: Arial, sans-serif;
+
+  font-size: 23px;
+
+  font-weight: 900;
+
+  font-style: italic;
+
+  letter-spacing: -1.5px;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.track-nav {
+  display: flex;
+
+  align-items: center;
+
+  gap: 38px;
+}
+
+.track-nav a {
+  position: relative;
+
+  color: #101bea;
+
+  text-decoration: none;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 11px;
+
+  font-weight: 900;
+
+  transition: opacity 0.2s ease;
+}
+
+.track-nav a:hover {
+  opacity: 0.6;
+}
+
+.track-nav a.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  right: 0;
+
+  bottom: -8px;
+
+  height: 2px;
+
+  background: #101bea;
+}
+
+
+/* =========================================
+   MENU
+========================================= */
+
+.track-menu {
+  width: 18px;
+
+  height: 18px;
+
+  padding: 0;
+
+  margin-left: 8px;
+
+  border: none;
+
+  background: transparent;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  cursor: pointer;
+}
+
+.track-menu span {
+  display: block;
+
+  width: 100%;
+
+  height: 2px;
+
+  background: #101bea;
+}
+
+
+/* =========================================
+   MAIN TITLE
+========================================= */
+
+.track-title {
+  position: absolute;
+
+  top: 8vh;
+
+  left: 3vw;
+
+  margin: 0;
+
+  z-index: 4;
+
+  font-family: Arial, sans-serif;
+
+  font-size: clamp(
+    120px,
+    14vw,
+    230px
+  );
+
+  line-height: 0.85;
+
+  font-weight: 950;
+
+  letter-spacing: -8px;
+
+  color: #101bea;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   TRACK VIDEO
+========================================= */
+
+.track-video-wrapper {
+  position: absolute;
+
+  z-index: 10;
+
+  left: 18%;
+
+  top: 23%;
+
+  width: 61%;
+
+  height: 63%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+.track-video {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: contain;
+
+  display: block;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   TRACK MAP
+========================================= */
+
+.track-map {
+  position: absolute;
+
+  top: 15%;
+
+  right: 3.5vw;
+
+  width: 18%;
+
+  z-index: 15;
+}
+
+.section-label {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 8px;
+
+  margin-bottom: 8px;
+}
+
+.section-label span {
+  font-family: Arial, sans-serif;
+
+  font-size: 13px;
+
+  font-weight: 900;
+
+  letter-spacing: -0.3px;
+}
+
+.section-label i {
+  display: block;
+
+  width: 27px;
+
+  height: 3px;
+
+  background: #101bea;
+}
+
+.track-map img {
+  width: 100%;
+
+  height: auto;
+
+  display: block;
+
+  object-fit: contain;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.track-description {
+  position: absolute;
+
+  left: 3.5vw;
+
+  bottom: 19vh;
+
+  width: 190px;
+
+  z-index: 20;
+}
+
+.track-description h2 {
+  margin: 0;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 17px;
+
+  line-height: 1.15;
+
+  font-weight: 900;
+
+  letter-spacing: -0.4px;
+
+  color: #101bea;
+}
+
+.small-line {
+  width: 27px;
+
+  height: 3px;
+
+  background: #101bea;
+
+  margin: 12px 0 13px;
+}
+
+.track-description p {
+  margin: 0;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 10px;
+
+  line-height: 1.35;
+
+  font-weight: 500;
+
+  color: #101bea;
+}
+
+
+/* =========================================
+   EXPLORE BUTTON
+========================================= */
+
+.explore-button {
+  position: absolute;
+
+  left: 3.5vw;
+
+  bottom: 6.5vh;
+
+  width: 150px;
+
+  height: 30px;
+
+  padding: 0 10px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  background: transparent;
+
+  border: 1px solid #101bea;
+
+  color: #101bea;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+
+  font-weight: 900;
+
+  cursor: pointer;
+
+  z-index: 20;
+}
+
+.explore-button .arrow {
+  font-size: 18px;
+
+  line-height: 1;
+}
+
+
+/* =========================================
+   STATISTICS
+========================================= */
+
+.track-stats {
+  position: absolute;
+
+  right: 3.5vw;
+
+  bottom: 10vh;
+
+  width: 145px;
+
+  z-index: 20;
+}
+
+.stat {
+  min-height: 39px;
+
+  padding: 5px 0;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  border-bottom: 1px solid
+    rgba(16, 27, 234, 0.45);
+}
+
+.stat:first-child {
+  border-top: 1px solid
+    rgba(16, 27, 234, 0.45);
+}
+
+.stat-icon {
+  width: 20px;
+
+  flex-shrink: 0;
+
+  font-size: 20px;
+
+  line-height: 1;
+
+  text-align: center;
+}
+
+.stat div:last-child {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.stat strong {
+  font-family: Arial, sans-serif;
+
+  font-size: 16px;
+
+  line-height: 1;
+
+  font-weight: 900;
+}
+
+.stat span {
+  margin-top: 3px;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 7px;
+
+  line-height: 1;
+
+  font-weight: 700;
+}
+
+
+/* =========================================
+   NEXT EVENTS
+========================================= */
+
+.next-events {
+  position: absolute;
+
+  right: 3.5vw;
+
+  bottom: 3vh;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  z-index: 20;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 9px;
+
+  font-weight: 900;
+}
+
+.next-events span:last-child {
+  font-size: 18px;
+
+  line-height: 1;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+  .track-nav {
+    gap: 18px;
+  }
+
+  .track-nav a {
+    font-size: 9px;
+  }
+
+  .track-title {
+    top: 12vh;
+
+    font-size: 16vw;
+
+    letter-spacing: -4px;
+  }
+
+  .track-video-wrapper {
+    left: 10%;
+
+    top: 28%;
+
+    width: 80%;
+
+    height: 50%;
+  }
+
+  .track-map {
+    width: 20%;
+
+    top: 18%;
+  }
+
+  .track-description {
+    bottom: 13vh;
+
+    width: 170px;
+  }
+
+  .track-stats {
+    bottom: 7vh;
+
+    width: 130px;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .track-header {
+    top: 18px;
+
+    left: 5vw;
+
+    right: 5vw;
+  }
+
+  .track-logo {
+    font-size: 18px;
+  }
+
+  .track-nav a {
+    display: none;
+  }
+
+  .track-nav {
+    gap: 0;
+  }
+
+  .track-menu {
+    margin-left: 0;
+  }
+
+  .track-title {
+    top: 12vh;
+
+    left: 5vw;
+
+    font-size: 20vw;
+
+    letter-spacing: -3px;
+  }
+
+  .track-map {
+    top: 19%;
+
+    right: 5vw;
+
+    width: 25%;
+  }
+
+  .track-video-wrapper {
+    left: 2%;
+
+    top: 29%;
+
+    width: 96%;
+
+    height: 47%;
+  }
+
+  .track-description {
+    left: 5vw;
+
+    bottom: 10vh;
+
+    width: 150px;
+  }
+
+  .track-description h2 {
+    font-size: 14px;
+  }
+
+  .track-description p {
+    font-size: 8px;
+  }
+
+  .track-stats {
+    right: 5vw;
+
+    bottom: 8vh;
+
+    width: 120px;
+  }
+
+  .stat {
+    min-height: 32px;
+
+    gap: 6px;
+  }
+
+  .stat-icon {
+    width: 15px;
+
+    font-size: 15px;
+  }
+
+  .stat strong {
+    font-size: 13px;
+  }
+
+  .stat span {
+    font-size: 6px;
+  }
+
+  .explore-button {
+    display: none;
+  }
+
+  .next-events {
+    display: none;
+  }
+}
