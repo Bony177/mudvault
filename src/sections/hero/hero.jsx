@@ -10,6 +10,9 @@ function Hero() {
   const heroRef = useRef(null);
   const videoRef = useRef(null);
 
+  const leftTextRef = useRef(null);
+  const rightTextRef = useRef(null);
+
   useEffect(() => {
     const video = videoRef.current;
 
@@ -25,16 +28,24 @@ function Hero() {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    let animation;
+    let timeline;
 
-    const setupVideoScroll = () => {
+    const setupAnimation = () => {
       if (!video.duration) return;
 
-      animation = gsap.to(video, {
-        currentTime: video.duration,
+      // Set initial text state
+      gsap.set(leftTextRef.current, {
+        y: 0,
+        opacity: 1,
+      });
 
-        ease: "none",
+      gsap.set(rightTextRef.current, {
+        y: 0,
+        opacity: 1,
+      });
 
+      // Main scroll timeline
+      timeline = gsap.timeline({
         scrollTrigger: {
           trigger: heroRef.current,
 
@@ -48,20 +59,65 @@ function Hero() {
         },
       });
 
+      // ------------------------------------------------
+      // BIKE
+      // ------------------------------------------------
+
+      timeline.to(
+        video,
+        {
+          currentTime: video.duration,
+          ease: "none",
+          duration: 1,
+        },
+        0,
+      );
+
+      // ------------------------------------------------
+      // LEFT TEXT
+      // ------------------------------------------------
+
+      timeline.to(
+        leftTextRef.current,
+        {
+          y: "-50vh",
+          opacity: 0,
+          ease: "none",
+          duration: 0.5,
+        },
+        0,
+      );
+
+      // ------------------------------------------------
+      // RIGHT TEXT
+      // ------------------------------------------------
+
+      timeline.to(
+        rightTextRef.current,
+        {
+          y: "-50vh",
+          opacity: 0,
+          ease: "none",
+          duration: 0.5,
+        },
+        0,
+      );
+
       ScrollTrigger.refresh();
     };
 
-    video.addEventListener("loadedmetadata", setupVideoScroll);
+    video.addEventListener("loadedmetadata", setupAnimation);
 
     if (video.readyState >= 1) {
-      setupVideoScroll();
+      setupAnimation();
     }
 
     return () => {
-      video.removeEventListener("loadedmetadata", setupVideoScroll);
+      video.removeEventListener("loadedmetadata", setupAnimation);
 
-      if (animation) {
-        animation.kill();
+      if (timeline) {
+        timeline.scrollTrigger?.kill();
+        timeline.kill();
       }
     };
   }, []);
@@ -83,9 +139,30 @@ function Hero() {
           <source src={bikeVideo} type="video/webm" />
         </video>
 
-        {/* Title */}
+        {/* Left Text */}
+        <div ref={leftTextRef} className="hero-text hero-text-left">
+          <h2>BUILT FOR THE WILD</h2>
+
+          <p>
+            Designed to conquer every road, every trail, and everything in
+            between.
+          </p>
+        </div>
+
+        {/* Right Text */}
+        <div ref={rightTextRef} className="hero-text hero-text-right">
+          <h2>RIDE BEYOND LIMITS</h2>
+
+          <p>
+            Power, freedom and adventure come together in one unforgettable
+            machine.
+          </p>
+        </div>
+
+        {/* Title + Logos */}
         <div className="hero-content">
           <img className="hero-title" src={mudvaultTitle} alt="MUDVAULT" />
+
           <img className="hero-logos" src={logos} alt="Partner logos" />
         </div>
       </div>

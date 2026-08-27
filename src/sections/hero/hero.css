@@ -112,6 +112,63 @@
 }
 
 
+/* =========================
+   SCROLLING HERO TEXT
+   ========================= */
+
+.hero-text {
+  position: absolute;
+  bottom: 8vh;
+
+  width: 300px;
+
+  z-index: 1000;
+
+  color: white;
+
+  background: rgba(0, 0, 0, 0.75);
+
+  padding: 20px;
+
+  border: 2px solid white;
+
+  pointer-events: none;
+
+  will-change: transform, opacity;
+}
+
+.hero-text-left {
+  left: 5vw;
+
+  text-align: left;
+}
+
+.hero-text-right {
+  right: 5vw;
+
+  text-align: right;
+}
+
+.hero-text h2 {
+  margin: 0 0 12px;
+
+  font-size: 24px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+.hero-text p {
+  margin: 0;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+
+  opacity: 0.85;
+}
+
 /* =========================================
    TITLE CONTAINER
 ========================================= */
