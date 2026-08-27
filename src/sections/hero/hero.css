@@ -116,59 +116,64 @@
    SCROLLING HERO TEXT
    ========================= */
 
+/* =========================================
+   HERO SCROLLING TEXT
+========================================= */
+
 .hero-text {
   position: absolute;
-  bottom: 8vh;
 
-  width: 300px;
+  /* FINAL resting position */
+  bottom: 7vh;
 
-  z-index: 1000;
+  width: 310px;
+  box-sizing: border-box;
+
+  padding: 22px 24px;
 
   color: white;
 
-  background: rgba(0, 0, 0, 0.75);
 
-  padding: 20px;
-
-  border: 2px solid white;
+  z-index: 20;
 
   pointer-events: none;
 
   will-change: transform, opacity;
+
+  backdrop-filter: blur(2px);
+
+  -webkit-backdrop-filter: blur(2px);
 }
 
 .hero-text-left {
   left: 5vw;
-
   text-align: left;
 }
 
 .hero-text-right {
-  right: 5vw;
-
+  right: 7vw;
   text-align: right;
 }
 
 .hero-text h2 {
-  margin: 0 0 12px;
+  margin: 0 0 14px;
 
-  font-size: 24px;
+  font-size: 23px;
+  line-height: 1.05;
 
   font-weight: 700;
 
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
 }
 
 .hero-text p {
   margin: 0;
 
   font-size: 14px;
+  line-height: 1.55;
 
-  line-height: 1.6;
-
-  opacity: 0.85;
+  opacity: 0.9;
 }
-
 /* =========================================
    TITLE CONTAINER
 ========================================= */
