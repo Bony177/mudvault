@@ -7,7 +7,7 @@ function App() {
     <>
       <Navbar />
       <Hero />
-      <Second />
+      <Second id="second-section" />
     </>
   );
 }

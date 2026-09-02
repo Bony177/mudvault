@@ -21,8 +21,14 @@
   box-sizing: border-box;
 
   background: transparent;
+  transition: background 0.3s ease;
 
   z-index: 9999;
+}
+
+.navbar-blue {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 12px 30px rgba(16, 27, 234, 0.08);
 }
 
 
@@ -83,7 +89,15 @@
 
   letter-spacing: 1.2px;
 
-  transition: opacity 0.25s ease;
+  transition: color 0.25s ease, opacity 0.25s ease;
+}
+
+.navbar-blue .navbar-links a,
+.navbar-blue .menu-button span,
+.navbar-blue .navbar-logo img {
+  color: #101bea;
+  filter: brightness(0) saturate(100%) invert(18%) sepia(86%) saturate(5480%)
+    hue-rotate(230deg) brightness(97%) contrast(103%);
 }
 
 .navbar-links a:hover {
@@ -123,8 +137,13 @@
   background: #ffffff;
 
   transition:
+    background 0.3s ease,
     transform 0.3s ease,
     opacity 0.3s ease;
+}
+
+.navbar-blue .menu-button span {
+  background: #101bea;
 }
 
 

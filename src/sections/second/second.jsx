@@ -5,7 +5,7 @@ import "./Second.css";
 import trackVideo from "../../assets/track01.webm";
 import trackMap from "../../assets/track01.png";
 
-function Second() {
+function Second({ id }) {
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ function Second() {
   }, []);
 
   return (
-    <section className="track-section">
+    <section id={id} className="track-section">
       <div className="track-sticky">
         {/* =========================================
             HEADER
