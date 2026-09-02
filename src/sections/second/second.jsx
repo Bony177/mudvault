@@ -6,7 +6,6 @@ import trackVideo from "../../assets/track01.webm";
 import trackMap from "../../assets/track01.png";
 
 function Second() {
-  const sectionRef = useRef(null);
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -14,87 +13,20 @@ function Second() {
 
     if (!video) return;
 
-    const gsap = window.gsap;
-    const ScrollTrigger = window.ScrollTrigger;
-
-    if (!gsap || !ScrollTrigger) {
-      console.error("GSAP or ScrollTrigger was not loaded.");
-      return;
-    }
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    let animation;
-
-    const setupVideoScroll = () => {
-      if (!video.duration) return;
-
-      animation = gsap.to(video, {
-        currentTime: video.duration,
-
-        ease: "none",
-
-        scrollTrigger: {
-          trigger: sectionRef.current,
-
-          start: "top top",
-
-          end: "bottom bottom",
-
-          scrub: 0.8,
-
-          invalidateOnRefresh: true,
-        },
-      });
-
-      ScrollTrigger.refresh();
-    };
-
-    video.addEventListener("loadedmetadata", setupVideoScroll);
-
-    if (video.readyState >= 1) {
-      setupVideoScroll();
-    }
-
-    return () => {
-      video.removeEventListener("loadedmetadata", setupVideoScroll);
-
-      if (animation) {
-        animation.kill();
-      }
-    };
+    // Automatically play the video
+    video.play().catch((error) => {
+      console.log("Autoplay was prevented:", error);
+    });
   }, []);
 
   return (
-    <section ref={sectionRef} className="track-section">
+    <section className="track-section">
       <div className="track-sticky">
         {/* =========================================
             HEADER
         ========================================= */}
 
-        <header className="track-header">
-          <div className="track-logo">MUDVAULT</div>
-
-          <nav className="track-nav">
-            <a href="#track" className="active">
-              TRACK
-            </a>
-
-            <a href="#events">EVENTS</a>
-
-            <a href="#about">ABOUT</a>
-
-            <a href="#gallery">GALLERY</a>
-
-            <a href="#contact">CONTACT</a>
-
-            <button className="track-menu" aria-label="Open menu">
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
-          </nav>
-        </header>
+        <header className="track-header"></header>
 
         {/* =========================================
             MAIN TITLE
@@ -124,6 +56,8 @@ function Second() {
             ref={videoRef}
             className="track-video"
             muted
+            autoPlay
+            loop
             playsInline
             preload="auto"
           >
@@ -156,7 +90,6 @@ function Second() {
 
         <button className="explore-button">
           <span>EXPLORE THE TRACK</span>
-
           <span className="arrow">→</span>
         </button>
 
@@ -217,7 +150,6 @@ function Second() {
 
         <div className="next-events">
           <span>NEXT: EVENTS</span>
-
           <span>→</span>
         </div>
       </div>
