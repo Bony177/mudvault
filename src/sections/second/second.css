@@ -1,107 +1,118 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton+SC&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Anton+SC&display=swap");
 
+/* =========================================================
+   VARIABLES
+========================================================= */
 
-/* =========================================
-   TRACK SECTION
-========================================= */
+:root {
+  --blue: #101bea;
+  --white: #ffffff;
+  --font: "Anton SC", sans-serif;
 
+  /* Easy-to-tweak sizes */
+  --logo-size: clamp(18px, 1.6vw, 23px);
+  --nav-size: clamp(9px, 0.75vw, 11px);
 
-.track-section {
-  position: relative;
-  font-family: "Anton SC", sans-serif;
-  width: 100%;
+  --title-size: clamp(120px, 14vw, 230px);
 
-  height: 700vh;
+  --map-label-size: clamp(10px, 0.9vw, 13px);
 
-  background: #ffffff;
+  --description-title-size: clamp(24px, 2.4vw, 35px);
+  --description-text-size: clamp(9px, 0.7vw, 10px);
 
-  overflow: clip;
+  --stat-number-size: clamp(13px, 1.1vw, 16px);
+  --stat-label-size: clamp(6px, 0.5vw, 7px);
 
-  color: #101bea;
+  --button-size: clamp(8px, 0.65vw, 9px);
+  --next-size: clamp(8px, 0.65vw, 9px);
 }
 
 
-/* =========================================
-   STICKY SCREEN
-========================================= */
+/* =========================================================
+   TRACK SECTION
+========================================================= */
 
-.track-sticky {
-  position: sticky;
-
-  top: 0;
+.track-section {
+  position: relative;
 
   width: 100%;
-
   height: 100vh;
 
   overflow: hidden;
 
-  background: #ffffff;
+  background: var(--white);
+  color: var(--blue);
+
+  font-family: var(--font);
 }
 
 
-/* =========================================
+/* =========================================================
+   TRACK CONTENT
+========================================================= */
+
+.track-sticky {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  background: var(--white);
+}
+
+
+/* =========================================================
    HEADER
-========================================= */
+========================================================= */
 
 .track-header {
   position: absolute;
 
   top: 28px;
-
   left: 3.2vw;
-
   right: 3.2vw;
 
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
   z-index: 30;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 
-/* =========================================
+/* =========================================================
    LOGO
-========================================= */
+========================================================= */
 
 .track-logo {
-  font-family: "Anton SC", sans-serif;
-
-  font-size: 23px;
-
+  font-size: var(--logo-size);
   font-weight: 900;
-
   font-style: italic;
 
   letter-spacing: -1.5px;
 }
 
 
-/* =========================================
+/* =========================================================
    NAVIGATION
-========================================= */
+========================================================= */
 
 .track-nav {
   display: flex;
-
   align-items: center;
 
-  gap: 38px;
+  gap: clamp(18px, 2.6vw, 38px);
 }
 
 .track-nav a {
   position: relative;
 
-  color: #101bea;
-
+  color: var(--blue);
   text-decoration: none;
 
-  font-family: "Anton SC", sans-serif;
-  font-size: 11px;
-
+  font-size: var(--nav-size);
   font-weight: 900;
 
   transition: opacity 0.2s ease;
@@ -111,44 +122,40 @@
   opacity: 0.6;
 }
 
+
+/* Active navigation underline */
+
 .track-nav a.active::after {
   content: "";
 
   position: absolute;
 
   left: 0;
-
   right: 0;
-
   bottom: -8px;
 
   height: 2px;
 
-  background: #101bea;
+  background: var(--blue);
 }
 
 
-/* =========================================
-   MENU
-========================================= */
+/* =========================================================
+   MENU BUTTON
+========================================================= */
 
 .track-menu {
   width: 18px;
-
   height: 18px;
 
   padding: 0;
-
   margin-left: 8px;
 
   border: none;
-
   background: transparent;
 
   display: flex;
-
   flex-direction: column;
-
   justify-content: space-between;
 
   cursor: pointer;
@@ -158,108 +165,59 @@
   display: block;
 
   width: 100%;
-
   height: 2px;
 
-  background: #101bea;
+  background: var(--blue);
 }
 
 
-/* =========================================
+/* =========================================================
    MAIN TITLE
-========================================= */
+========================================================= */
 
 .track-title {
   position: absolute;
 
-  top: 8vh;
-
+  top: 11vh;
   left: 3vw;
-
-  margin: 0;
 
   z-index: 40;
 
-  font-family: "Anton SC", sans-serif;
+  margin: 0;
 
-  font-size: clamp(
-    120px,
-    14vw,
-    230px
-  );
+  color: var(--blue);
 
+  font-size: var(--title-size);
+  font-weight: 950;
   line-height: 0.85;
 
-  font-weight: 950;
-
-  letter-spacing: -8px;
-
-  color: #101bea;
+  letter-spacing: clamp(-8px, -0.55vw, -3px);
 
   white-space: nowrap;
 }
 
 
-/* =========================================
-   TRACK VIDEO
-========================================= */
-
-.track-video-wrapper {
-  position: absolute;
-
-  z-index: 10;
-
-  left: 18%;
-
-  top: 23%;
-
-  width: 61%;
-
-  height: 63%;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  pointer-events: none;
-}
-
-.track-video {
-  width: 100%;
-
-  height: 100%;
-
-  object-fit: contain;
-
-  display: block;
-
-  pointer-events: none;
-}
-
-
-/* =========================================
+/* =========================================================
    TRACK MAP
-========================================= */
+========================================================= */
 
 .track-map {
   position: absolute;
 
   top: 15%;
-
   right: 3.5vw;
 
-  width: 18%;
+  width: clamp(130px, 22vw, 500px);
 
   z-index: 15;
 }
 
+
+/* Map label */
+
 .section-label {
   display: flex;
-
   flex-direction: column;
-
   align-items: flex-start;
 
   gap: 8px;
@@ -268,9 +226,7 @@
 }
 
 .section-label span {
- font-family: "Anton SC", sans-serif;
-  font-size: 13px;
-
+  font-size: var(--map-label-size);
   font-weight: 900;
 
   letter-spacing: -0.3px;
@@ -280,295 +236,307 @@
   display: block;
 
   width: 27px;
-
   height: 3px;
 
-  background: #101bea;
+  background: var(--blue);
 }
 
+
+/* Map image */
+
 .track-map img {
-  width: 100%;
-
-  height: auto;
-
   display: block;
+
+  width: 100%;
+  height: auto;
 
   object-fit: contain;
 }
 
 
-/* =========================================
+/* =========================================================
+   TRACK VIDEO
+========================================================= */
+
+.track-video-wrapper {
+  position: absolute;
+
+  left: 15%;
+  top: 25%;
+
+  width: 55%;
+  height: 63%;
+
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+.track-video {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
    DESCRIPTION
-========================================= */
+========================================================= */
 
 .track-description {
   position: absolute;
 
   left: 3.5vw;
-
   bottom: 19vh;
 
-  width: 190px;
+  width: clamp(150px, 14vw, 200px);
 
   z-index: 20;
 }
 
+
+/* Description heading */
+
 .track-description h2 {
   margin: 0;
 
-  font-family: "Anton SC", sans-serif;
+  color: var(--blue);
 
-  font-size: 17px;
-
+  font-size: var(--description-title-size);
+  font-weight: 900;
   line-height: 1.15;
 
-  font-weight: 900;
-
   letter-spacing: -0.4px;
-
-  color: #101bea;
 }
+
+
+/* Small blue line */
 
 .small-line {
   width: 27px;
-
   height: 3px;
 
-  background: #101bea;
-
   margin: 12px 0 13px;
+
+  background: var(--blue);
 }
+
+
+/* Description paragraph */
 
 .track-description p {
   margin: 0;
 
-  font-family: "Anton SC", sans-serif;
-  font-size: 10px;
+  color: var(--blue);
 
-  line-height: 1.35;
-
+  font-size: var(--description-text-size);
   font-weight: 500;
-
-  color: #101bea;
+  line-height: 1.35;
 }
 
 
-/* =========================================
+/* =========================================================
    EXPLORE BUTTON
-========================================= */
+========================================================= */
 
 .explore-button {
   position: absolute;
 
   left: 3.5vw;
-
   bottom: 6.5vh;
 
-  width: 150px;
-
-  height: 30px;
+  width: clamp(130px, 10vw, 150px);
+  height: clamp(28px, 2vw, 30px);
 
   padding: 0 10px;
 
+  z-index: 20;
+
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
+  border: 1px solid var(--blue);
   background: transparent;
 
-  border: 1px solid #101bea;
+  color: var(--blue);
 
-  color: #101bea;
-
-  font-family: "Anton SC", sans-serif;
-
-  font-size: 9px;
-
+  font-family: var(--font);
+  font-size: var(--button-size);
   font-weight: 900;
 
   cursor: pointer;
-
-  z-index: 20;
 }
 
 .explore-button .arrow {
-  font-size: 18px;
-
+  font-size: clamp(16px, 1.3vw, 18px);
   line-height: 1;
 }
 
 
-/* =========================================
+/* =========================================================
    STATISTICS
-========================================= */
+========================================================= */
 
 .track-stats {
   position: absolute;
 
   right: 3.5vw;
-
   bottom: 10vh;
 
-  width: 145px;
+  width: clamp(120px, 11vw, 145px);
 
   z-index: 20;
 }
 
+
+/* Individual stat */
+
 .stat {
-  min-height: 39px;
+  min-height: clamp(32px, 3vw, 39px);
 
   padding: 5px 0;
 
   display: flex;
-
   align-items: center;
 
-  gap: 10px;
+  gap: clamp(6px, 0.7vw, 10px);
 
-  border-bottom: 1px solid
-    rgba(16, 27, 234, 0.45);
+  /*border-bottom: 1px solid rgba(16, 27, 234, 0.45);*/
 }
 
 .stat:first-child {
-  border-top: 1px solid
-    rgba(16, 27, 234, 0.45);
+ /* border-top: 1px solid rgba(16, 27, 234, 0.45); */
 }
 
+
+/* Stat icon */
+
 .stat-icon {
-  width: 20px;
+  width: clamp(15px, 1.4vw, 20px);
 
   flex-shrink: 0;
 
-  font-size: 20px;
+  font-size: clamp(15px, 1.4vw, 20px);
 
   line-height: 1;
-
   text-align: center;
 }
 
+
+/* Stat text container */
+
 .stat div:last-child {
   display: flex;
-
   flex-direction: column;
 }
 
-.stat strong {
-  font-family: "Anton SC", sans-serif;
 
-  font-size: 16px;
+/* Stat number */
+
+.stat strong {
+  font-size: var(--stat-number-size);
 
   line-height: 1;
-
   font-weight: 900;
 }
+
+
+/* Stat label */
 
 .stat span {
   margin-top: 3px;
 
-  font-family: "Anton SC", sans-serif;
-
-  font-size: 7px;
+  font-size: var(--stat-label-size);
 
   line-height: 1;
-
   font-weight: 700;
 }
 
 
-/* =========================================
+/* =========================================================
    NEXT EVENTS
-========================================= */
+========================================================= */
 
 .next-events {
   position: absolute;
 
   right: 3.5vw;
-
   bottom: 3vh;
 
-  display: flex;
+  z-index: 20;
 
+  display: flex;
   align-items: center;
 
   gap: 15px;
 
-  z-index: 20;
-
-  font-family: "Anton SC", sans-serif;
-
-  font-size: 9px;
-
+  font-size: var(--next-size);
   font-weight: 900;
 }
 
 .next-events span:last-child {
-  font-size: 18px;
-
+  font-size: clamp(16px, 1.3vw, 18px);
   line-height: 1;
 }
 
 
-/* =========================================
-   RESPONSIVE
-========================================= */
+/* =========================================================
+   TABLET
+========================================================= */
 
 @media (max-width: 900px) {
 
-  .track-nav {
-    gap: 18px;
-  }
-
-  .track-nav a {
-    font-size: 9px;
-  }
-
   .track-title {
     top: 12vh;
-
-    font-size: 16vw;
-
-    letter-spacing: -4px;
   }
 
   .track-video-wrapper {
-    left: 10%;
-
+    left: 18%;
     top: 28%;
 
     width: 80%;
-
     height: 50%;
   }
 
   .track-map {
-    width: 20%;
-
     top: 18%;
+    width: 20%;
   }
 
   .track-description {
     bottom: 13vh;
-
     width: 170px;
   }
 
   .track-stats {
     bottom: 7vh;
-
     width: 130px;
   }
 }
 
 
+/* =========================================================
+   MOBILE
+========================================================= */
+
 @media (max-width: 600px) {
+
+  /* Header */
 
   .track-header {
     top: 18px;
 
     left: 5vw;
-
     right: 5vw;
   }
 
@@ -576,65 +544,77 @@
     font-size: 18px;
   }
 
-  .track-nav a {
-    display: none;
-  }
+
+  /* Navigation */
 
   .track-nav {
     gap: 0;
+  }
+
+  .track-nav a {
+    display: none;
   }
 
   .track-menu {
     margin-left: 0;
   }
 
+
+  /* Title */
+
   .track-title {
     top: 12vh;
-
     left: 5vw;
 
-    font-size: 20vw;
+    font-size: clamp(80px, 20vw, 130px);
 
     letter-spacing: -3px;
   }
 
+
+  /* Map */
+
   .track-map {
     top: 19%;
-
     right: 5vw;
 
     width: 25%;
   }
 
+
+  /* Video */
+
   .track-video-wrapper {
     left: 2%;
-
     top: 29%;
 
     width: 96%;
-
     height: 47%;
   }
 
+
+  /* Description */
+
   .track-description {
     left: 5vw;
-
     bottom: 10vh;
 
     width: 150px;
   }
 
   .track-description h2 {
-    font-size: 14px;
+    font-size: clamp(18px, 4.5vw, 24px);
   }
 
   .track-description p {
-    font-size: 8px;
+    font-size: clamp(8px, 2.2vw, 10px);
   }
+
+
+  /* Statistics */
 
   .track-stats {
     right: 5vw;
-
     bottom: 8vh;
 
     width: 120px;
@@ -642,13 +622,11 @@
 
   .stat {
     min-height: 32px;
-
     gap: 6px;
   }
 
   .stat-icon {
     width: 15px;
-
     font-size: 15px;
   }
 
@@ -660,10 +638,10 @@
     font-size: 6px;
   }
 
-  .explore-button {
-    display: none;
-  }
 
+  /* Mobile: hide these */
+
+  .explore-button,
   .next-events {
     display: none;
   }

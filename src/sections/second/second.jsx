@@ -126,15 +126,6 @@ function Second({ id }) {
           </div>
 
           <div className="stat">
-            <div className="stat-icon">♢</div>
-
-            <div>
-              <strong>1.1 M</strong>
-              <span>MAX MUD DEPTH</span>
-            </div>
-          </div>
-
-          <div className="stat">
             <div className="stat-icon">◷</div>
 
             <div>
