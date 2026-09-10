@@ -204,10 +204,10 @@
 .track-map {
   position: absolute;
 
-  top: 16%;
+  top: 14%;
   right: 3.5vw;
 
-  width: clamp(130px, 24vw, 500px);
+  width: clamp(130px, 22vw, 500px);
 
   z-index: 15;
 }
@@ -391,7 +391,7 @@
   position: absolute;
 
   right: 3.5vw;
-  bottom: 10vh;
+  bottom: 3.5vh;
 
   width: clamp(200px, 15vw, 400px);
 
