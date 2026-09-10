@@ -17,11 +17,11 @@
 
   --map-label-size: clamp(10px, 0.9vw, 13px);
 
-  --description-title-size: clamp(24px, 2.4vw, 35px);
-  --description-text-size: clamp(9px, 0.7vw, 10px);
+  --description-title-size: clamp(24px, 2.8vw, 40px);
+  --description-text-size: clamp(9px, 0.9vw, 14px);
 
-  --stat-number-size: clamp(13px, 1.1vw, 16px);
-  --stat-label-size: clamp(6px, 0.5vw, 7px);
+  --stat-number-size: clamp(13px, 1.8vw, 19px);
+  --stat-label-size: clamp(6px, 0.9vw, 18px);
 
   --button-size: clamp(8px, 0.65vw, 9px);
   --next-size: clamp(8px, 0.65vw, 9px);
@@ -204,10 +204,10 @@
 .track-map {
   position: absolute;
 
-  top: 15%;
+  top: 16%;
   right: 3.5vw;
 
-  width: clamp(130px, 22vw, 500px);
+  width: clamp(130px, 24vw, 500px);
 
   z-index: 15;
 }
@@ -261,8 +261,8 @@
 .track-video-wrapper {
   position: absolute;
 
-  left: 15%;
-  top: 25%;
+  left: 17%;
+  top: 29%;
 
   width: 55%;
   height: 63%;
@@ -296,9 +296,9 @@
   position: absolute;
 
   left: 3.5vw;
-  bottom: 19vh;
+  bottom: 12vh;
 
-  width: clamp(150px, 14vw, 200px);
+  width: clamp(150px, 16vw, 240px);
 
   z-index: 20;
 }
@@ -352,7 +352,7 @@
   position: absolute;
 
   left: 3.5vw;
-  bottom: 6.5vh;
+  bottom: 4vh;
 
   width: clamp(130px, 10vw, 150px);
   height: clamp(28px, 2vw, 30px);
@@ -393,16 +393,20 @@
   right: 3.5vw;
   bottom: 10vh;
 
-  width: clamp(120px, 11vw, 145px);
+  width: clamp(200px, 15vw, 400px);
 
   z-index: 20;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(12px, 1vw, 16px) clamp(12px, 1vw, 16px);
 }
 
 
 /* Individual stat */
 
 .stat {
-  min-height: clamp(32px, 3vw, 39px);
+  min-height: clamp(40px, 4vw, 55px);
 
   padding: 5px 0;
 
@@ -410,12 +414,6 @@
   align-items: center;
 
   gap: clamp(6px, 0.7vw, 10px);
-
-  /*border-bottom: 1px solid rgba(16, 27, 234, 0.45);*/
-}
-
-.stat:first-child {
- /* border-top: 1px solid rgba(16, 27, 234, 0.45); */
 }
 
 
@@ -433,7 +431,7 @@
 }
 
 
-/* Stat text container */
+/* Stat text */
 
 .stat div:last-child {
   display: flex;
@@ -441,7 +439,7 @@
 }
 
 
-/* Stat number */
+/* Number */
 
 .stat strong {
   font-size: var(--stat-number-size);
@@ -451,7 +449,7 @@
 }
 
 
-/* Stat label */
+/* Label */
 
 .stat span {
   margin-top: 3px;
@@ -461,7 +459,6 @@
   line-height: 1;
   font-weight: 700;
 }
-
 
 /* =========================================================
    NEXT EVENTS

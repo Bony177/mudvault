@@ -80,7 +80,9 @@ function Second({ id }) {
 
           <p>
             A next-level dirt experience designed to test every part of you and
-            your machine. Every turn has a purpose. Every lap tells a story.
+            your machine. Tight turns, brutal climbs, and unpredictable terrain
+            keep you locked in from the first corner to the final lap. Every
+            turn has a purpose. Every lap tells a story.
           </p>
         </div>
 
