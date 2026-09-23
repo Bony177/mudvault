@@ -15,18 +15,14 @@ import trackMap02 from "../../assets/track02.png";
 const TRACKS = [
   {
     id: 1,
+
     title: "TRACK 01",
 
     video: trackVideo01,
     map: trackMap01,
 
-    heading: (
-      <>
-        BUILT FOR CHAOS.
-        <br />
-        MADE FOR CONTROL.
-      </>
-    ),
+    headingLine1: "BUILT FOR CHAOS.",
+    headingLine2: "MADE FOR CONTROL.",
 
     description:
       "A next-level dirt experience designed to test every part of you and your machine. Tight turns, brutal climbs, and unpredictable terrain keep you locked in from the first corner to the final lap. Every turn has a purpose. Every lap tells a story.",
@@ -41,18 +37,14 @@ const TRACKS = [
 
   {
     id: 2,
+
     title: "TRACK 02",
 
     video: trackVideo02,
     map: trackMap02,
 
-    heading: (
-      <>
-        BUILT FOR SPEED.
-        <br />
-        MADE FOR PRECISION.
-      </>
-    ),
+    headingLine1: "BUILT FOR SPEED.",
+    headingLine2: "MADE FOR PRECISION.",
 
     description:
       "A faster and more technical route built around sharp corners, heavy jumps, and demanding elevation changes. Track 02 rewards precision and commitment, pushing both rider and machine through every section.",
@@ -67,18 +59,118 @@ const TRACKS = [
 ];
 
 /* =========================================================
+   MATRIX SCRAMBLE TEXT
+========================================================= */
+
+const SCRAMBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&*@";
+
+function ScrambleText({ text, duration = 500, className = "" }) {
+  const [displayText, setDisplayText] = useState(text);
+
+  useEffect(() => {
+    let frame;
+    let startTime;
+
+    const originalText = text;
+
+    const animate = (timestamp) => {
+      if (!startTime) {
+        startTime = timestamp;
+      }
+
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+
+      /*
+        How many characters should already
+        be revealed.
+      */
+      const revealedCount = Math.floor(progress * originalText.length);
+
+      let output = "";
+
+      for (let i = 0; i < originalText.length; i++) {
+        /*
+          Spaces remain spaces.
+        */
+
+        if (originalText[i] === " ") {
+          output += " ";
+          continue;
+        }
+
+        /*
+          Characters before the reveal point
+          become the real character.
+        */
+
+        if (i < revealedCount) {
+          output += originalText[i];
+        } else {
+
+        /*
+          Remaining characters are random.
+        */
+          const randomChar =
+            SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+
+          output += randomChar;
+        }
+      }
+
+      setDisplayText(output);
+
+      if (progress < 1) {
+        frame = requestAnimationFrame(animate);
+      } else {
+        setDisplayText(originalText);
+      }
+    };
+
+    setDisplayText(
+      originalText
+        .split("")
+        .map((char) =>
+          char === " "
+            ? " "
+            : SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)],
+        )
+        .join(""),
+    );
+
+    frame = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(frame);
+    };
+  }, [text, duration]);
+
+  return <span className={className}>{displayText}</span>;
+}
+
+/* =========================================================
    COMPONENT
 ========================================================= */
 
 function Second({ id }) {
   /* =========================================================
-     STATE / REFS
+     STATE
+  ========================================================= */
+
+  const [currentTrack, setCurrentTrack] = useState(0);
+
+  const [isChanging, setIsChanging] = useState(false);
+
+  const [videoAnimation, setVideoAnimation] = useState("");
+
+  /* =========================================================
+     REFS
   ========================================================= */
 
   const videoRef = useRef(null);
 
-  const [currentTrack, setCurrentTrack] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  /* =========================================================
+     CURRENT TRACK
+  ========================================================= */
 
   const track = TRACKS[currentTrack];
 
@@ -87,19 +179,46 @@ function Second({ id }) {
   ========================================================= */
 
   const changeTrack = (newTrack) => {
-    if (newTrack === currentTrack || isTransitioning) return;
+    if (newTrack === currentTrack || isChanging) {
+      return;
+    }
 
-    // Start exit animation
-    setIsTransitioning(true);
+    setIsChanging(true);
 
-    // Wait for the old content to leave
+    /*
+      FIRST:
+      Animate ONLY the video out.
+    */
+
+    setVideoAnimation("video-exit");
+
+    /*
+      Wait until exit animation finishes.
+    */
+
     setTimeout(() => {
+      /*
+        Change the track data.
+      */
+
       setCurrentTrack(newTrack);
 
-      // Give React time to render the new track
+      /*
+        Start the new video from below.
+      */
+
+      setVideoAnimation("video-enter");
+
+      /*
+        Allow another scroll after
+        the enter animation finishes.
+      */
+
       setTimeout(() => {
-        setIsTransitioning(false);
-      }, 50);
+        setVideoAnimation("");
+
+        setIsChanging(false);
+      }, 500);
     }, 450);
   };
 
@@ -112,7 +231,6 @@ function Second({ id }) {
 
     if (!video) return;
 
-    // Start the new track video from the beginning
     video.currentTime = 0;
 
     video.play().catch((error) => {
@@ -121,26 +239,26 @@ function Second({ id }) {
   }, [currentTrack]);
 
   /* =========================================================
-     SCROLL / WHEEL DETECTION
+     SCROLL DETECTION
   ========================================================= */
 
   useEffect(() => {
     const handleWheel = (event) => {
-      if (isTransitioning) return;
+      if (isChanging) return;
 
-      /* -----------------------------------------
-         SCROLL DOWN
-         Track 01 → Track 02
-      ----------------------------------------- */
+      /*
+        SCROLL DOWN
+        Track 01 → Track 02
+      */
 
       if (event.deltaY > 0 && currentTrack === 0) {
         changeTrack(1);
       }
 
-      /* -----------------------------------------
-         SCROLL UP
-         Track 02 → Track 01
-      ----------------------------------------- */
+      /*
+        SCROLL UP
+        Track 02 → Track 01
+      */
 
       if (event.deltaY < 0 && currentTrack === 1) {
         changeTrack(0);
@@ -154,7 +272,7 @@ function Second({ id }) {
     return () => {
       window.removeEventListener("wheel", handleWheel);
     };
-  }, [currentTrack, isTransitioning]);
+  }, [currentTrack, isChanging]);
 
   /* =========================================================
      RENDER
@@ -170,137 +288,154 @@ function Second({ id }) {
         <header className="track-header"></header>
 
         {/* =========================================
-            CHANGING TRACK CONTENT
+            MAIN TITLE
+        ========================================= */}
+
+        <h1
+          key={`title-${currentTrack}`}
+          className="track-title track-text-reveal"
+        >
+          <ScrambleText text={track.title} duration={550} />
+        </h1>
+
+        {/* =========================================
+            TRACK MAP
+        ========================================= */}
+
+        <div key={`map-${currentTrack}`} className="track-map track-map-change">
+          <div className="section-label">
+            <span>TRACK MAP</span>
+
+            <i></i>
+          </div>
+
+          <img src={track.map} alt={`${track.title} map`} />
+        </div>
+
+        {/* =========================================
+            TRACK VIDEO
+        ========================================= */}
+
+        <div className={`track-video-wrapper ${videoAnimation}`}>
+          <video
+            ref={videoRef}
+            className="track-video"
+            muted
+            autoPlay
+            loop
+            playsInline
+            preload="auto"
+          >
+            <source src={track.video} type="video/webm" />
+          </video>
+        </div>
+
+        {/* =========================================
+            DESCRIPTION
         ========================================= */}
 
         <div
-          key={currentTrack}
-          className={`track-content ${
-            isTransitioning ? "track-content-exit" : "track-content-enter"
-          }`}
+          key={`description-${currentTrack}`}
+          className="track-description track-text-reveal"
         >
-          {/* =========================================
-              MAIN TITLE
-          ========================================= */}
+          <h2>
+            <ScrambleText text={track.headingLine1} duration={500} />
 
-          <h1 className="track-title">{track.title}</h1>
+            <br />
 
-          {/* =========================================
-              TRACK MAP
-          ========================================= */}
+            <ScrambleText text={track.headingLine2} duration={650} />
+          </h2>
 
-          <div className="track-map">
-            <div className="section-label">
-              <span>TRACK MAP</span>
-              <i></i>
-            </div>
+          <div className="small-line"></div>
 
-            <img src={track.map} alt={`${track.title} map`} />
-          </div>
+          <p>
+            <ScrambleText text={track.description} duration={900} />
+          </p>
+        </div>
 
-          {/* =========================================
-              TRACK VIDEO
-          ========================================= */}
+        {/* =========================================
+            EXPLORE BUTTON
+        ========================================= */}
 
-          <div className="track-video-wrapper">
-            <video
-              ref={videoRef}
-              className="track-video"
-              muted
-              autoPlay
-              loop
-              playsInline
-              preload="auto"
-            >
-              <source src={track.video} type="video/webm" />
-            </video>
-          </div>
+        <button className="explore-button">
+          <span>EXPLORE THE TRACK</span>
 
-          {/* =========================================
-              DESCRIPTION
-          ========================================= */}
+          <span className="arrow">→</span>
+        </button>
 
-          <div className="track-description">
-            <h2>{track.heading}</h2>
+        {/* =========================================
+            TRACK STATISTICS
+        ========================================= */}
 
-            <div className="small-line"></div>
+        <div
+          key={`stats-${currentTrack}`}
+          className="track-stats track-stats-change"
+        >
+          {/* LENGTH */}
 
-            <p>{track.description}</p>
-          </div>
+          <div className="stat">
+            <div className="stat-icon">◈</div>
 
-          {/* =========================================
-              EXPLORE BUTTON
-          ========================================= */}
+            <div>
+              <strong>
+                <ScrambleText text={track.stats.length} duration={350} />
+              </strong>
 
-          <button className="explore-button">
-            <span>EXPLORE THE TRACK</span>
-
-            <span className="arrow">→</span>
-          </button>
-
-          {/* =========================================
-              TRACK STATISTICS
-          ========================================= */}
-
-          <div className="track-stats">
-            {/* LENGTH */}
-
-            <div className="stat">
-              <div className="stat-icon">◈</div>
-
-              <div>
-                <strong>{track.stats.length}</strong>
-
-                <span>TRACK LENGTH</span>
-              </div>
-            </div>
-
-            {/* ELEVATION */}
-
-            <div className="stat">
-              <div className="stat-icon">△</div>
-
-              <div>
-                <strong>{track.stats.elevation}</strong>
-
-                <span>ELEVATION GAIN</span>
-              </div>
-            </div>
-
-            {/* OBSTACLES */}
-
-            <div className="stat">
-              <div className="stat-icon">⚑</div>
-
-              <div>
-                <strong>{track.stats.obstacles}</strong>
-
-                <span>OBSTACLES</span>
-              </div>
-            </div>
-
-            {/* LAP TIME */}
-
-            <div className="stat">
-              <div className="stat-icon">◷</div>
-
-              <div>
-                <strong>{track.stats.lapTime}</strong>
-
-                <span>AVG LAP TIME</span>
-              </div>
+              <span>TRACK LENGTH</span>
             </div>
           </div>
 
-          {/* =========================================
-              NEXT SECTION
-          ========================================= */}
+          {/* ELEVATION */}
 
-          <div className="next-events">
-            <span>NEXT: EVENTS</span>
+          <div className="stat">
+            <div className="stat-icon">△</div>
 
-            <span>→</span>
+            <div>
+              <strong>
+                <ScrambleText text={track.stats.elevation} duration={400} />
+              </strong>
+
+              <span>ELEVATION GAIN</span>
+            </div>
           </div>
+
+          {/* OBSTACLES */}
+
+          <div className="stat">
+            <div className="stat-icon">⚑</div>
+
+            <div>
+              <strong>
+                <ScrambleText text={track.stats.obstacles} duration={450} />
+              </strong>
+
+              <span>OBSTACLES</span>
+            </div>
+          </div>
+
+          {/* LAP TIME */}
+
+          <div className="stat">
+            <div className="stat-icon">◷</div>
+
+            <div>
+              <strong>
+                <ScrambleText text={track.stats.lapTime} duration={500} />
+              </strong>
+
+              <span>AVG LAP TIME</span>
+            </div>
+          </div>
+        </div>
+
+        {/* =========================================
+            NEXT SECTION
+        ========================================= */}
+
+        <div className="next-events">
+          <span>NEXT: EVENTS</span>
+
+          <span>→</span>
         </div>
       </div>
     </section>
