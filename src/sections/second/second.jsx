@@ -15,7 +15,6 @@ import trackMap02 from "../../assets/track02.png";
 const TRACKS = [
   {
     id: 1,
-
     title: "TRACK 01",
 
     video: trackVideo01,
@@ -37,7 +36,6 @@ const TRACKS = [
 
   {
     id: 2,
-
     title: "TRACK 02",
 
     video: trackVideo02,
@@ -80,35 +78,23 @@ function ScrambleText({ text, duration = 500, className = "" }) {
 
       const progress = Math.min((timestamp - startTime) / duration, 1);
 
-      /*
-        How many characters should already
-        be revealed.
-      */
       const revealedCount = Math.floor(progress * originalText.length);
 
       let output = "";
 
       for (let i = 0; i < originalText.length; i++) {
-        /*
-          Spaces remain spaces.
-        */
-
+        /* Spaces stay spaces */
         if (originalText[i] === " ") {
           output += " ";
           continue;
         }
 
-        /*
-          Characters before the reveal point
-          become the real character.
-        */
-
+        /* Correct characters */
         if (i < revealedCount) {
           output += originalText[i];
         } else {
-          /*
-          Remaining characters are random.
-        */
+
+        /* Random matrix characters */
           const randomChar =
             SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
 
@@ -124,6 +110,8 @@ function ScrambleText({ text, duration = 500, className = "" }) {
         setDisplayText(originalText);
       }
     };
+
+    /* Initial scrambled state */
 
     setDisplayText(
       originalText
@@ -152,13 +140,47 @@ function ScrambleText({ text, duration = 500, className = "" }) {
 
 function Second({ id }) {
   /* =========================================================
+     ⭐ EASY TRANSITION CONTROLS
+  ========================================================= */
+
+  /*
+     How long after the Track section becomes
+     fully visible before another track switch
+     is allowed.
+     
+     700 = 0.7 seconds
+  */
+  const TRACK_SWITCH_DELAY = 700;
+
+  /*
+     How much wheel movement is required
+     before changing tracks.
+
+     Higher = slower / more deliberate
+     Lower  = more sensitive
+  */
+  const SCROLL_THRESHOLD = 100;
+
+  /*
+     Video animation duration.
+
+     Must match the CSS:
+     --video-transition-duration
+  */
+  const VIDEO_TRANSITION_TIME = 800;
+
+  /* =========================================================
      STATE
   ========================================================= */
 
   const [currentTrack, setCurrentTrack] = useState(0);
 
   const [isChanging, setIsChanging] = useState(false);
+
   const [isSectionActive, setIsSectionActive] = useState(false);
+
+  const [canSwitchTrack, setCanSwitchTrack] = useState(false);
+
   const [videoAnimation, setVideoAnimation] = useState("");
 
   /* =========================================================
@@ -166,8 +188,15 @@ function Second({ id }) {
   ========================================================= */
 
   const sectionRef = useRef(null);
+
   const stickyRef = useRef(null);
+
   const videoRef = useRef(null);
+
+  /*
+     Stores accumulated wheel movement.
+  */
+  const scrollAccumulator = useRef(0);
 
   /* =========================================================
      CURRENT TRACK
@@ -184,43 +213,66 @@ function Second({ id }) {
       return;
     }
 
+    /*
+       Prevent another track change
+       while animation is running.
+    */
+
     setIsChanging(true);
 
     /*
-      FIRST:
-      Animate ONLY the video out.
+       Reset accumulated scroll.
+    */
+
+    scrollAccumulator.current = 0;
+
+    /*
+       -----------------------------------------
+       OLD VIDEO
+       SLIDE UP + SHRINK
+       -----------------------------------------
     */
 
     setVideoAnimation("video-exit");
 
     /*
-      Wait until exit animation finishes.
+       Wait for OLD video animation.
     */
 
     setTimeout(() => {
       /*
-        Change the track data.
+         Change Track 01 → Track 02
+         or Track 02 → Track 01
       */
 
       setCurrentTrack(newTrack);
 
       /*
-        Start the new video from below.
+         -----------------------------------------
+         NEW VIDEO
+         ENTER FROM BELOW + GROW
+         -----------------------------------------
       */
 
       setVideoAnimation("video-enter");
 
       /*
-        Allow another scroll after
-        the enter animation finishes.
+         Wait for NEW video animation.
       */
 
       setTimeout(() => {
         setVideoAnimation("");
 
         setIsChanging(false);
-      }, 800);
-    }, 800);
+
+        /*
+           Clear any wheel momentum that may
+           have happened during the animation.
+        */
+
+        scrollAccumulator.current = 0;
+      }, VIDEO_TRANSITION_TIME);
+    }, VIDEO_TRANSITION_TIME);
   };
 
   /* =========================================================
@@ -232,6 +284,11 @@ function Second({ id }) {
 
     if (!video) return;
 
+    /*
+       Start every new track video
+       from the beginning.
+    */
+
     video.currentTime = 0;
 
     video.play().catch((error) => {
@@ -240,17 +297,68 @@ function Second({ id }) {
   }, [currentTrack]);
 
   /* =========================================================
-     SCROLL DETECTION
+     DETECT WHEN STICKY TRACK SCREEN
+     IS FULLY INSIDE THE VIEWPORT
   ========================================================= */
+
   useEffect(() => {
     const sticky = stickyRef.current;
 
     if (!sticky) return;
 
+    let activationTimer;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsSectionActive(entry.intersectionRatio >= 0.95);
+        /*
+             Is the WHITE 100vh screen
+             basically completely visible?
+          */
+
+        const active = entry.intersectionRatio >= 0.95;
+
+        setIsSectionActive(active);
+
+        if (active) {
+          /*
+               Reset accumulated wheel
+               when entering the section.
+            */
+
+          scrollAccumulator.current = 0;
+
+          /*
+               IMPORTANT:
+
+               Don't immediately allow
+               Track 01 → Track 02.
+            */
+
+          setCanSwitchTrack(false);
+
+          clearTimeout(activationTimer);
+
+          /*
+               Wait before allowing
+               another track switch.
+            */
+
+          activationTimer = setTimeout(() => {
+            setCanSwitchTrack(true);
+          }, TRACK_SWITCH_DELAY);
+        } else {
+          /*
+               Section is leaving viewport.
+            */
+
+          setCanSwitchTrack(false);
+
+          scrollAccumulator.current = 0;
+
+          clearTimeout(activationTimer);
+        }
       },
+
       {
         threshold: [0, 0.95, 1],
       },
@@ -259,37 +367,103 @@ function Second({ id }) {
     observer.observe(sticky);
 
     return () => {
+      clearTimeout(activationTimer);
+
       observer.disconnect();
     };
   }, []);
+
+  /* =========================================================
+     WHEEL / SCROLL DETECTION
+  ========================================================= */
+
   useEffect(() => {
     const handleWheel = (event) => {
       /*
-      DON'T DO ANYTHING WHILE:
-      - section isn't fully visible
-      - animation is running
-    */
+         -----------------------------------------
+         DON'T SWITCH IF:
+         -----------------------------------------
 
-      if (!isSectionActive || isChanging) {
+         1. Track section isn't fully visible
+         2. Waiting for settling delay
+         3. Current animation is running
+      */
+
+      if (!isSectionActive) {
+        return;
+      }
+
+      if (!canSwitchTrack) {
+        return;
+      }
+
+      if (isChanging) {
+        return;
+      }
+
+      /*
+         -----------------------------------------
+         ACCUMULATE WHEEL MOVEMENT
+         -----------------------------------------
+
+         Instead of:
+
+         ONE tiny scroll
+              ↓
+         Track 02
+
+         We do:
+
+         small scroll
+              +
+         small scroll
+              +
+         small scroll
+              ↓
+         threshold reached
+              ↓
+         Track 02
+      */
+
+      scrollAccumulator.current += event.deltaY;
+
+      /* =========================================
+         SCROLL DOWN
+
+         TRACK 01 → TRACK 02
+      ========================================= */
+
+      if (scrollAccumulator.current >= SCROLL_THRESHOLD && currentTrack === 0) {
+        /*
+           Reset BEFORE changing.
+        */
+
+        scrollAccumulator.current = 0;
+
+        changeTrack(1);
+
         return;
       }
 
       /* =========================================
-       SCROLL DOWN
-       TRACK 01 → TRACK 02
-    ========================================= */
+         SCROLL UP
 
-      if (event.deltaY > 0 && currentTrack === 0) {
-        changeTrack(1);
-      }
+         TRACK 02 → TRACK 01
+      ========================================= */
 
-      /* =========================================
-       SCROLL UP
-       TRACK 02 → TRACK 01
-    ========================================= */
+      if (
+        scrollAccumulator.current <= -SCROLL_THRESHOLD &&
+        currentTrack === 1
+      ) {
+        /*
+           Reset BEFORE changing.
+        */
 
-      if (event.deltaY < 0 && currentTrack === 1) {
+        scrollAccumulator.current = 0;
+
         changeTrack(0);
+
+        return;
       }
     };
 
@@ -300,7 +474,7 @@ function Second({ id }) {
     return () => {
       window.removeEventListener("wheel", handleWheel);
     };
-  }, [currentTrack, isChanging, isSectionActive]);
+  }, [currentTrack, isChanging, isSectionActive, canSwitchTrack]);
 
   /* =========================================================
      RENDER
