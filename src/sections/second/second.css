@@ -643,3 +643,114 @@
     display: none;
   }
 }
+
+/* =========================================================
+   TRACK CONTENT TRANSITION
+========================================================= */
+
+/*
+   EASY TWEAK VALUES
+*/
+
+:root {
+  --track-transition-duration: 0.45s;
+
+  /* How far old track moves upward */
+  --track-exit-distance: -50px;
+
+  /* How far new track starts below */
+  --track-enter-distance: 50px;
+
+  /* How much the track shrinks */
+  --track-transition-scale: 0.94;
+}
+
+
+/* =========================================================
+   CHANGING CONTENT WRAPPER
+========================================================= */
+
+.track-content {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+}
+
+
+/* =========================================================
+   TRACK 01 → EXIT
+========================================================= */
+
+.track-content-exit {
+  animation:
+    trackExit
+    var(--track-transition-duration)
+    ease
+    forwards;
+}
+
+
+/* =========================================================
+   TRACK 02 → ENTER
+========================================================= */
+
+.track-content-enter {
+  animation:
+    trackEnter
+    var(--track-transition-duration)
+    ease
+    forwards;
+}
+
+
+/* =========================================================
+   EXIT ANIMATION
+========================================================= */
+
+@keyframes trackExit {
+
+  from {
+    transform:
+      translateY(0)
+      scale(1);
+
+    opacity: 1;
+  }
+
+  to {
+    transform:
+      translateY(var(--track-exit-distance))
+      scale(var(--track-transition-scale));
+
+    opacity: 0;
+  }
+
+}
+
+
+/* =========================================================
+   ENTER ANIMATION
+========================================================= */
+
+@keyframes trackEnter {
+
+  from {
+    transform:
+      translateY(var(--track-enter-distance))
+      scale(var(--track-transition-scale));
+
+    opacity: 0;
+  }
+
+  to {
+    transform:
+      translateY(0)
+      scale(1);
+
+    opacity: 1;
+  }
+
+}
