@@ -106,8 +106,7 @@ function ScrambleText({ text, duration = 500, className = "" }) {
         if (i < revealedCount) {
           output += originalText[i];
         } else {
-
-        /*
+          /*
           Remaining characters are random.
         */
           const randomChar =
@@ -159,13 +158,14 @@ function Second({ id }) {
   const [currentTrack, setCurrentTrack] = useState(0);
 
   const [isChanging, setIsChanging] = useState(false);
-
+  const [isSectionActive, setIsSectionActive] = useState(false);
   const [videoAnimation, setVideoAnimation] = useState("");
 
   /* =========================================================
      REFS
   ========================================================= */
 
+  const sectionRef = useRef(null);
   const videoRef = useRef(null);
 
   /* =========================================================
@@ -241,24 +241,51 @@ function Second({ id }) {
   /* =========================================================
      SCROLL DETECTION
   ========================================================= */
+  useEffect(() => {
+    const section = sectionRef.current;
 
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsSectionActive(entry.intersectionRatio >= 0.95);
+      },
+      {
+        threshold: [0, 0.95, 1],
+      },
+    );
+
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
   useEffect(() => {
     const handleWheel = (event) => {
-      if (isChanging) return;
-
       /*
-        SCROLL DOWN
-        Track 01 → Track 02
-      */
+      DON'T DO ANYTHING WHILE:
+      - section isn't fully visible
+      - animation is running
+    */
+
+      if (!isSectionActive || isChanging) {
+        return;
+      }
+
+      /* =========================================
+       SCROLL DOWN
+       TRACK 01 → TRACK 02
+    ========================================= */
 
       if (event.deltaY > 0 && currentTrack === 0) {
         changeTrack(1);
       }
 
-      /*
-        SCROLL UP
-        Track 02 → Track 01
-      */
+      /* =========================================
+       SCROLL UP
+       TRACK 02 → TRACK 01
+    ========================================= */
 
       if (event.deltaY < 0 && currentTrack === 1) {
         changeTrack(0);
@@ -272,14 +299,14 @@ function Second({ id }) {
     return () => {
       window.removeEventListener("wheel", handleWheel);
     };
-  }, [currentTrack, isChanging]);
+  }, [currentTrack, isChanging, isSectionActive]);
 
   /* =========================================================
      RENDER
   ========================================================= */
 
   return (
-    <section id={id} className="track-section">
+    <section ref={sectionRef} id={id} className="track-section">
       <div className="track-sticky">
         {/* =========================================
             HEADER
