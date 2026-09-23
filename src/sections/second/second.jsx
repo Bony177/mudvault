@@ -166,6 +166,7 @@ function Second({ id }) {
   ========================================================= */
 
   const sectionRef = useRef(null);
+  const stickyRef = useRef(null);
   const videoRef = useRef(null);
 
   /* =========================================================
@@ -218,8 +219,8 @@ function Second({ id }) {
         setVideoAnimation("");
 
         setIsChanging(false);
-      }, 500);
-    }, 450);
+      }, 800);
+    }, 800);
   };
 
   /* =========================================================
@@ -242,9 +243,9 @@ function Second({ id }) {
      SCROLL DETECTION
   ========================================================= */
   useEffect(() => {
-    const section = sectionRef.current;
+    const sticky = stickyRef.current;
 
-    if (!section) return;
+    if (!sticky) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -255,7 +256,7 @@ function Second({ id }) {
       },
     );
 
-    observer.observe(section);
+    observer.observe(sticky);
 
     return () => {
       observer.disconnect();
@@ -307,7 +308,7 @@ function Second({ id }) {
 
   return (
     <section ref={sectionRef} id={id} className="track-section">
-      <div className="track-sticky">
+      <div ref={stickyRef} className="track-sticky">
         {/* =========================================
             HEADER
         ========================================= */}
