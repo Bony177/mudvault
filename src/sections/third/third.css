@@ -1,0 +1,1039 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton+SC&display=swap");
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+  --garage-blue: #101bea;
+  --garage-white: #ffffff;
+
+  --garage-font: "Anton SC", sans-serif;
+
+  --garage-logo-size: clamp(18px, 1.6vw, 23px);
+  --garage-nav-size: clamp(9px, 0.75vw, 11px);
+
+  --garage-title-size: clamp(
+    120px,
+    17vw,
+    250px
+  );
+
+  --garage-bike-name-size: clamp(
+    25px,
+    2.2vw,
+    38px
+  );
+
+  --garage-spec-size: clamp(
+    8px,
+    0.8vw,
+    12px
+  );
+
+  --garage-price-size: clamp(
+    8px,
+    0.7vw,
+    10px
+  );
+
+  --garage-description-title: clamp(
+    22px,
+    2vw,
+    32px
+  );
+
+  --garage-description-text: clamp(
+    8px,
+    0.75vw,
+    12px
+  );
+
+  --garage-video-duration: 0.75s;
+}
+
+
+/* =========================================================
+   MAIN SECTION
+========================================================= */
+
+.garage-section {
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+
+  background: var(--garage-blue);
+  color: var(--garage-white);
+
+  font-family: var(--garage-font);
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   MAIN SCREEN
+========================================================= */
+
+.garage-sticky {
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+
+  overflow: hidden;
+
+  background: var(--garage-blue);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.garage-header {
+  position: absolute;
+
+  top: 25px;
+  left: 3.5vw;
+  right: 3.5vw;
+
+  z-index: 50;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.garage-logo {
+  display: flex;
+  flex-direction: column;
+
+  color: var(--garage-white);
+
+  font-size: var(--garage-logo-size);
+  font-weight: 900;
+
+  line-height: 0.85;
+
+  letter-spacing: -1px;
+}
+
+.garage-logo span {
+  margin-top: 4px;
+
+  font-size: clamp(
+    5px,
+    0.55vw,
+    8px
+  );
+
+  letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   NAV
+========================================================= */
+
+.garage-nav {
+  display: flex;
+  align-items: center;
+
+  gap: clamp(
+    18px,
+    2.6vw,
+    38px
+  );
+}
+
+.garage-nav a {
+  position: relative;
+
+  color: var(--garage-white);
+
+  text-decoration: none;
+
+  font-size: var(--garage-nav-size);
+  font-weight: 900;
+
+  transition:
+    opacity 0.2s ease;
+}
+
+.garage-nav a:hover {
+  opacity: 0.6;
+}
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.garage-menu {
+  width: 20px;
+  height: 20px;
+
+  padding: 0;
+  margin-left: 8px;
+
+  border: none;
+
+  background: transparent;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  cursor: pointer;
+}
+
+.garage-menu span {
+  width: 100%;
+  height: 2px;
+
+  background: var(--garage-white);
+}
+
+
+/* =========================================================
+   GARAGE TITLE
+========================================================= */
+
+.garage-title {
+  position: absolute;
+
+  top: 10vh;
+  left: 3.2vw;
+
+  z-index: 5;
+
+  margin: 0;
+
+  color: var(--garage-white);
+
+  font-size: var(--garage-title-size);
+
+  font-weight: 950;
+
+  line-height: 0.8;
+
+  letter-spacing:
+    clamp(
+      -9px,
+      -0.6vw,
+      -3px
+    );
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.garage-description {
+  position: absolute;
+
+  top: 12vh;
+  left: 46%;
+
+  width: clamp(
+    170px,
+    16vw,
+    240px
+  );
+
+  z-index: 20;
+}
+
+.garage-description h2 {
+  margin: 0;
+
+  color: var(--garage-white);
+
+  font-size:
+    var(--garage-description-title);
+
+  line-height: 1.05;
+
+  font-weight: 900;
+
+  letter-spacing: -0.5px;
+}
+
+.garage-small-line {
+  width: 28px;
+  height: 3px;
+
+  margin:
+    13px 0 13px;
+
+  background:
+    var(--garage-white);
+}
+
+.garage-description p {
+  margin: 0;
+
+  color: var(--garage-white);
+
+  font-size:
+    var(--garage-description-text);
+
+  line-height: 1.4;
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   MAIN BIKE VIDEO
+========================================================= */
+
+.garage-bike-wrapper {
+  position: absolute;
+
+  left: 5%;
+  bottom: 7%;
+
+  width: 57%;
+  height: 61%;
+
+  z-index: 10;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+.garage-bike-video {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   BIKE EXIT
+========================================================= */
+
+.garage-bike-wrapper.bike-video-exit {
+  animation:
+    bikeVideoExit
+    var(--garage-video-duration)
+    cubic-bezier(
+      0.65,
+      0,
+      0.35,
+      1
+    )
+    forwards;
+}
+
+
+/* =========================================================
+   BIKE ENTER
+========================================================= */
+
+.garage-bike-wrapper.bike-video-enter {
+  animation:
+    bikeVideoEnter
+    var(--garage-video-duration)
+    cubic-bezier(
+      0.65,
+      0,
+      0.35,
+      1
+    )
+    forwards;
+}
+
+
+/* =========================================================
+   EXIT ANIMATION
+========================================================= */
+
+@keyframes bikeVideoExit {
+
+  0% {
+    transform:
+      translateY(0)
+      scale(1);
+
+    opacity: 1;
+  }
+
+  100% {
+    transform:
+      translateY(-45px)
+      scale(0.94);
+
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   ENTER ANIMATION
+========================================================= */
+
+@keyframes bikeVideoEnter {
+
+  0% {
+    transform:
+      translateY(65px)
+      scale(0.94);
+
+    opacity: 0;
+  }
+
+  70% {
+    transform:
+      translateY(-5px)
+      scale(1.01);
+
+    opacity: 1;
+  }
+
+  100% {
+    transform:
+      translateY(0)
+      scale(1);
+
+    opacity: 1;
+  }
+}
+
+
+/* =========================================================
+   BIKE LIST
+========================================================= */
+
+.garage-bike-list {
+  position: absolute;
+
+  top: 14%;
+  right: 3.5vw;
+
+  width: 27%;
+
+  z-index: 30;
+}
+
+
+/* =========================================================
+   BIKE CARD
+========================================================= */
+
+.bike-card {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 23vh;
+
+  padding:
+    10px
+    0
+    16px;
+
+  border: none;
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.45);
+
+  background: transparent;
+
+  color: var(--garage-white);
+
+  font-family: var(--garage-font);
+
+  text-align: left;
+
+  cursor: pointer;
+
+  display: grid;
+
+  grid-template-columns:
+    45px
+    1fr
+    120px
+    25px;
+
+  column-gap: 5px;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.bike-card:hover {
+  transform:
+    translateX(-5px);
+}
+
+.bike-card:not(.active) {
+  opacity: 0.9;
+}
+
+.bike-card.active {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   NUMBER
+========================================================= */
+
+.bike-number {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 8px;
+
+  padding-top: 2px;
+}
+
+.bike-number span {
+  font-size:
+    clamp(
+      9px,
+      0.8vw,
+      12px
+    );
+
+  line-height: 1;
+}
+
+.bike-number i {
+  width: 27px;
+  height: 2px;
+
+  margin-top: 5px;
+
+  background:
+    var(--garage-white);
+}
+
+
+/* =========================================================
+   BIKE INFO
+========================================================= */
+
+.bike-info {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+}
+
+.bike-info h2 {
+  margin: 0;
+
+  font-size:
+    var(--garage-bike-name-size);
+
+  line-height: 0.95;
+
+  font-weight: 900;
+
+  white-space: nowrap;
+}
+
+.bike-info p {
+  margin:
+    8px 0 10px;
+
+  font-family:
+    var(--garage-font);
+
+  font-size:
+    var(--garage-spec-size);
+
+  line-height: 1;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+.bike-price {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 150px;
+
+  height: 38px;
+
+  padding:
+    0 12px;
+
+  border:
+    1px solid
+    var(--garage-white);
+
+  font-size:
+    var(--garage-price-size);
+
+  font-weight: 900;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   BIKE ICON
+========================================================= */
+
+.bike-icon {
+  height: 90px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.bike-icon img {
+  width: 115px;
+  height: 75px;
+
+  object-fit: contain;
+
+  display: block;
+
+  transition:
+    transform 0.25s ease;
+}
+
+.bike-card:hover
+.bike-icon img {
+  transform:
+    translateX(-4px);
+}
+
+
+/* =========================================================
+   PLUS
+========================================================= */
+
+.bike-plus {
+  align-self: center;
+
+  justify-self: end;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 27px;
+
+  font-weight: 300;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   BOTTOM LEFT
+========================================================= */
+
+.garage-bottom-left {
+  position: absolute;
+
+  left: 3.5vw;
+  bottom: 4vh;
+
+  z-index: 30;
+
+  display: flex;
+  flex-direction: column;
+
+  color:
+    var(--garage-white);
+}
+
+.garage-bottom-left span:first-child {
+  font-size:
+    clamp(
+      7px,
+      0.65vw,
+      9px
+    );
+}
+
+.garage-bottom-left strong {
+  margin-top: 3px;
+
+  font-size:
+    clamp(
+      8px,
+      0.7vw,
+      10px
+    );
+
+  font-weight: 900;
+}
+
+.gear-arrow {
+  position: absolute;
+
+  left: 210px;
+  bottom: 0;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 22px;
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.garage-pagination {
+  position: absolute;
+
+  right: 3.5vw;
+  bottom: 3vh;
+
+  z-index: 40;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+}
+
+.garage-pagination button {
+  width: 45px;
+  height: 45px;
+
+  border:
+    1px solid
+    var(--garage-white);
+
+  background: transparent;
+
+  color:
+    var(--garage-white);
+
+  font-family: Arial, sans-serif;
+
+  font-size: 25px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.garage-pagination button:hover {
+  background:
+    var(--garage-white);
+
+  color:
+    var(--garage-blue);
+}
+
+.garage-pagination span {
+  font-size:
+    clamp(
+      8px,
+      0.7vw,
+      10px
+    );
+
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   TEXT REVEAL
+========================================================= */
+
+.garage-text-reveal {
+  animation:
+    garageTextReveal
+    0.35s
+    ease-out
+    both;
+}
+
+@keyframes garageTextReveal {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(8px);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+  .garage-title {
+    top: 12vh;
+
+    font-size:
+      clamp(
+        100px,
+        16vw,
+        180px
+      );
+  }
+
+  .garage-description {
+    left: 48%;
+    top: 14vh;
+
+    width: 180px;
+  }
+
+  .garage-bike-wrapper {
+    left: 3%;
+    bottom: 9%;
+
+    width: 62%;
+    height: 55%;
+  }
+
+  .garage-bike-list {
+    width: 31%;
+  }
+
+  .bike-card {
+    grid-template-columns:
+      30px
+      1fr
+      80px
+      20px;
+  }
+
+  .bike-icon img {
+    width: 80px;
+  }
+
+  .bike-info h2 {
+    font-size: 23px;
+  }
+
+  .bike-price {
+    min-width: 120px;
+    height: 32px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .garage-section,
+  .garage-sticky {
+    min-height: 100vh;
+  }
+
+
+  /* HEADER */
+
+  .garage-header {
+    top: 18px;
+
+    left: 5vw;
+    right: 5vw;
+  }
+
+  .garage-logo {
+    font-size: 18px;
+  }
+
+  .garage-nav a {
+    display: none;
+  }
+
+  .garage-menu {
+    margin-left: 0;
+  }
+
+
+  /* TITLE */
+
+  .garage-title {
+    top: 12vh;
+    left: 5vw;
+
+    font-size:
+      clamp(
+        75px,
+        22vw,
+        130px
+      );
+  }
+
+
+  /* DESCRIPTION */
+
+  .garage-description {
+    top: 24vh;
+    left: 5vw;
+
+    width: 145px;
+  }
+
+  .garage-description h2 {
+    font-size: 20px;
+  }
+
+  .garage-description p {
+    font-size: 8px;
+  }
+
+
+  /* VIDEO */
+
+  .garage-bike-wrapper {
+    left: 2%;
+
+    bottom: 30%;
+
+    width: 96%;
+    height: 36%;
+  }
+
+
+  /* BIKE LIST */
+
+  .garage-bike-list {
+    top: auto;
+    bottom: 7vh;
+
+    left: 5vw;
+    right: 5vw;
+
+    width: 90%;
+
+    display: flex;
+
+    gap: 5px;
+
+    overflow-x: auto;
+  }
+
+  .bike-card {
+    flex:
+      0 0
+      150px;
+
+    min-height: 115px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 8px;
+
+    border:
+      1px solid
+      rgba(255,255,255,0.35);
+  }
+
+  .bike-number {
+    position: absolute;
+
+    top: 8px;
+    left: 8px;
+  }
+
+  .bike-info {
+    margin-top: 22px;
+  }
+
+  .bike-info h2 {
+    font-size: 18px;
+  }
+
+  .bike-info p {
+    font-size: 7px;
+  }
+
+  .bike-price {
+    min-width: auto;
+
+    width: 100%;
+
+    height: 25px;
+
+    font-size: 7px;
+  }
+
+  .bike-icon {
+    position: absolute;
+
+    top: 5px;
+    right: 2px;
+
+    width: 65px;
+    height: 50px;
+  }
+
+  .bike-icon img {
+    width: 65px;
+    height: 50px;
+  }
+
+  .bike-plus {
+    display: none;
+  }
+
+
+  /* BOTTOM */
+
+  .garage-bottom-left {
+    display: none;
+  }
+
+  .garage-pagination {
+    display: none;
+  }
+}
