@@ -242,31 +242,6 @@ function Third({ id }) {
             HEADER
         ========================================= */}
 
-        <header className="garage-header">
-          {/* LOGO */}
-
-          <div className="garage-logo">
-            MUDVAULT.
-            <span>DIRT TRACK COMPANY</span>
-          </div>
-
-          {/* NAVIGATION */}
-
-          <nav className="garage-nav">
-            <a href="#track">TRACK</a>
-            <a href="#events">EVENTS</a>
-            <a href="#about">ABOUT</a>
-            <a href="#gallery">GALLERY</a>
-            <a href="#contact">CONTACT</a>
-
-            <button className="garage-menu" aria-label="Menu">
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
-          </nav>
-        </header>
-
         {/* =========================================
             MAIN TITLE
         ========================================= */}
@@ -354,8 +329,6 @@ function Third({ id }) {
               </div>
 
               {/* PLUS */}
-
-              <span className="bike-plus">+</span>
             </button>
           ))}
         </div>
@@ -375,30 +348,6 @@ function Third({ id }) {
         {/* =========================================
             PAGINATION
         ========================================= */}
-
-        <div className="garage-pagination">
-          <button
-            onClick={() =>
-              changeBike(currentBike === 0 ? BIKES.length - 1 : currentBike - 1)
-            }
-            disabled={isChanging}
-          >
-            ←
-          </button>
-
-          <span>
-            0{currentBike + 1} / 0{BIKES.length}
-          </span>
-
-          <button
-            onClick={() =>
-              changeBike(currentBike === BIKES.length - 1 ? 0 : currentBike + 1)
-            }
-            disabled={isChanging}
-          >
-            →
-          </button>
-        </div>
       </div>
     </section>
   );
