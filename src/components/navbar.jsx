@@ -49,7 +49,9 @@ function Navbar() {
   const navbarIsBlue = isSecondSectionActive && !isThirdSectionActive;
 
   return (
-    <nav className={`navbar ${navbarIsBlue ? "navbar-blue" : ""}`}>
+    <nav
+      className={`navbar ${navbarIsBlue ? "navbar-blue" : ""} ${!isSecondSectionActive && !isThirdSectionActive ? "navbar-hero" : ""}`}
+    >
       <div className="navbar-logo">
         <img src={mudnav} alt="MudVault" />
       </div>

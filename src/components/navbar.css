@@ -31,6 +31,10 @@
   box-shadow: none;
 }
 
+.navbar-hero {
+  background: transparent;
+}
+
 
 /* ================================
    LOGO
@@ -98,6 +102,20 @@
   color: #101bea;
   filter: brightness(0) saturate(100%) invert(18%) sepia(86%) saturate(5480%)
     hue-rotate(230deg) brightness(97%) contrast(103%);
+}
+
+.navbar-hero .navbar-links a {
+  color: #d2390a;
+}
+
+.navbar-hero .navbar-menu-button span,
+.navbar-hero .menu-button span {
+  background: #d2390a;
+}
+
+.navbar-hero .navbar-logo img {
+  filter: brightness(0) saturate(100%) invert(24%) sepia(93%) saturate(3194%)
+    hue-rotate(5deg) brightness(85%) contrast(106%);
 }
 
 .navbar-links a:hover {

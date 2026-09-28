@@ -87,27 +87,18 @@
    LOGOS
 ========================================= */
 
-.hero-logos {
+.hero-logos-placeholder {
   position: absolute;
 
-  /* Adjust vertical position */
   top: 15%;
-
-  /* Responsive size */
-  width: clamp(180px, 40vw, 800px);
-
-  height: auto;
-
-  display: block;
-  object-fit: contain;
-  filter: blur(0.7px);
-
-  /* Adjust horizontal position */
   left: 26.5%;
   transform: translateX(-50%);
 
-  z-index: 6;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
 
+  z-index: 6;
   pointer-events: none;
 }
 
@@ -202,7 +193,7 @@
 .hero-title {
   position: absolute;
 
-  top: 23%;
+  top: 20%;
 
   width: clamp(280px, 87vw, 1800px);
 
