@@ -230,30 +230,7 @@ function Fourth({ id }) {
             HEADER
         ================================================= */}
 
-        <header className="race-kit-header">
-          <div className="race-kit-logo">
-            <strong>MUDVAULT</strong>
-            <span>DIRT TRACK EQUIPMENT</span>
-          </div>
-
-          <nav className="race-kit-nav">
-            <a href="#track">TRACK</a>
-
-            <a href="#events">EVENTS</a>
-
-            <a href="#about">ABOUT</a>
-
-            <a href="#gallery">GALLERY</a>
-
-            <a href="#contact">CONTACT</a>
-
-            <button className="race-kit-menu" aria-label="Open menu">
-              <span />
-              <span />
-              <span />
-            </button>
-          </nav>
-        </header>
+        <header className="race-kit-header"></header>
 
         {/* =================================================
             LEFT SIDE
