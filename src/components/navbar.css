@@ -239,7 +239,7 @@
 }
 
 /* =========================================================
-   FOURTH SECTION — ORANGE NAVBAR
+   FOURTH SECTION — ORANGE NAVBAR + LOGO
 ========================================================= */
 
 .navbar-orange {
@@ -261,8 +261,23 @@
 }
 
 
-/* LOGO */
+/* =========================================================
+   LOGO → ORANGE
+========================================================= */
 
 .navbar-orange .navbar-logo img {
-  filter: none;
+  /*
+    Converts the logo image into MudVault orange
+    #ff4b12
+  */
+
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(29%)
+    sepia(99%)
+    saturate(3554%)
+    hue-rotate(359deg)
+    brightness(104%)
+    contrast(103%);
 }

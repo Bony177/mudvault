@@ -189,11 +189,11 @@
 
   font-family: var(--race-font);
 
-  font-size: clamp(105px, 13vw, 215px);
+  font-size: clamp(105px, 15vw, 215px);
   font-weight: 950;
 
-  line-height: 0.78;
-  letter-spacing: -0.065em;
+  line-height: 0.9;
+  letter-spacing: -0.025em;
 
   user-select: none;
 }
@@ -818,7 +818,7 @@
   .race-kit-left {
     left: 5vw;
 
-    top: 12vh;
+    top: 16vh;
 
     bottom: auto;
 
