@@ -86,7 +86,7 @@ const KIT_DATA = {
     heading: "BUILT FOR IMPACT.",
 
     description:
-      "A race-focused helmet concept built around full head coverage, secure retention and a wide field of vision. The design prioritizes impact management, ventilation and rider visibility.",
+      "The MudVault race helmet is designed as a complete head-protection system for demanding off-road environments. Its full-coverage profile combines a protective outer shell, secure retention and an open field of vision to keep the rider focused through high-speed sections, jumps, corners and unpredictable terrain. Ventilation channels are integrated into the overall form to encourage airflow while maintaining a compact race-focused silhouette. Every element of the concept is shaped around stability, visibility and confidence when the pace increases.",
 
     specs: [
       ["SHELL", "IMPACT-RESISTANT CONSTRUCTION"],
@@ -94,8 +94,6 @@ const KIT_DATA = {
       ["RETENTION", "SECURE CHIN-STRAP SYSTEM"],
       ["VENTILATION", "AIRFLOW-FOCUSED CHANNELS"],
     ],
-
-    drawingLabel: "HELMET / TECHNICAL VIEW",
   },
 
   vest: {
@@ -108,7 +106,7 @@ const KIT_DATA = {
     heading: "ENGINEERED FOR THE CORE.",
 
     description:
-      "A race-armor concept for the torso, designed around impact coverage, mobility and a secure fit while keeping the rider's movement unrestricted.",
+      "The MudVault protective vest is conceived as a lightweight torso-protection system that combines coverage with unrestricted rider movement. The structure is designed to sit securely against the chest and back while allowing the rider to shift naturally between standing, cornering and aggressive riding positions. Its low-profile construction keeps the protective zones close to the body, reducing unnecessary movement while maintaining the mobility required for technical off-road riding.",
 
     specs: [
       ["COVERAGE", "CHEST + BACK PROTECTION"],
@@ -116,8 +114,6 @@ const KIT_DATA = {
       ["MOBILITY", "FLEXIBLE RIDER POSITION"],
       ["USE", "OFF-ROAD / MOTOCROSS"],
     ],
-
-    drawingLabel: "VEST / TECHNICAL VIEW",
   },
 
   gloves: {
@@ -130,7 +126,7 @@ const KIT_DATA = {
     heading: "CONTROL UNDER PRESSURE.",
 
     description:
-      "A motocross glove concept focused on grip, hand coverage and controlled movement around the levers and handlebars.",
+      "The MudVault race gloves are designed around the constant interaction between rider, handlebar and controls. The construction focuses on maintaining grip while allowing the fingers and wrist to move naturally during braking, acceleration and technical manoeuvres. Protective zones are positioned around exposed areas of the hand, while the flexible profile helps preserve tactile control and comfort during extended riding sessions.",
 
     specs: [
       ["PALM", "HIGH-GRIP SURFACE"],
@@ -138,8 +134,6 @@ const KIT_DATA = {
       ["CUFF", "SECURE WRIST CLOSURE"],
       ["CONTROL", "FLEXIBLE FINGER MOVEMENT"],
     ],
-
-    drawingLabel: "GLOVES / TECHNICAL VIEW",
   },
 
   knee: {
@@ -152,7 +146,7 @@ const KIT_DATA = {
     heading: "PROTECT THE LINE.",
 
     description:
-      "A knee-protection concept intended to cover the knee area while allowing the repeated flexion required during aggressive off-road riding.",
+      "The MudVault knee guards are developed around one of the most active areas of the rider's body. The protective profile is positioned to cover the knee and surrounding impact zone while allowing repeated flexion through corners, jumps and technical sections. A secure retention concept keeps the guard positioned as the rider moves, while the streamlined shape is intended to work naturally with motocross riding gear.",
 
     specs: [
       ["COVERAGE", "KNEE IMPACT ZONE"],
@@ -160,8 +154,6 @@ const KIT_DATA = {
       ["RETENTION", "SECURE STRAP SYSTEM"],
       ["USE", "OFF-ROAD / MOTOCROSS"],
     ],
-
-    drawingLabel: "KNEE GUARD / TECHNICAL VIEW",
   },
 
   boots: {
@@ -174,7 +166,7 @@ const KIT_DATA = {
     heading: "LOCKED TO THE BIKE.",
 
     description:
-      "A motocross boot concept focused on ankle stability, foot coverage and protection around the lower leg and foot during off-road riding.",
+      "The MudVault race boots are designed to provide structured protection around the foot, ankle and lower leg while maintaining the movement required for active riding. The construction concept focuses on stability around the ankle and controlled interaction with the motorcycle, particularly through foot positioning, braking and aggressive terrain changes. A reinforced riding profile completes the system with a balance between protection, support and rider control.",
 
     specs: [
       ["ANKLE", "STRUCTURAL SUPPORT"],
@@ -182,8 +174,6 @@ const KIT_DATA = {
       ["SOLE", "RIDING-FOCUSED GRIP"],
       ["USE", "OFF-ROAD / MOTOCROSS"],
     ],
-
-    drawingLabel: "BOOT / TECHNICAL VIEW",
   },
 };
 
@@ -233,10 +223,6 @@ function Fourth({ id }) {
     });
   }, []);
 
-  /* =========================================================
-     RENDER
-  ========================================================= */
-
   return (
     <section id={id} className="race-kit-section">
       <div className="race-kit-page">
@@ -247,19 +233,14 @@ function Fourth({ id }) {
         <header className="race-kit-header">
           <div className="race-kit-logo">
             <strong>MUDVAULT</strong>
-
             <span>DIRT TRACK EQUIPMENT</span>
           </div>
 
           <nav className="race-kit-nav">
             <a href="#track">TRACK</a>
-
             <a href="#events">EVENTS</a>
-
             <a href="#about">ABOUT</a>
-
             <a href="#gallery">GALLERY</a>
-
             <a href="#contact">CONTACT</a>
 
             <button className="race-kit-menu" aria-label="Open menu">
@@ -277,7 +258,6 @@ function Fourth({ id }) {
         <div className="race-kit-left">
           <div className="race-kit-title">
             <span>RACE</span>
-
             <span>KIT</span>
           </div>
 
@@ -301,7 +281,6 @@ function Fourth({ id }) {
 
             <button className="race-kit-button">
               <span>EXPLORE THE KIT</span>
-
               <span>→</span>
             </button>
           </div>
@@ -324,9 +303,7 @@ function Fourth({ id }) {
             <source src={riderVideo} type="video/webm" />
           </video>
 
-          {/* ===============================================
-              INVISIBLE HOTSPOTS
-          =============================================== */}
+          {/* INVISIBLE HOTSPOTS */}
 
           <div className="hotspot-layer">
             {Object.entries(HOTSPOTS).map(([key, hotspot]) => (
@@ -336,13 +313,13 @@ function Fourth({ id }) {
         </div>
 
         {/* =================================================
-            RIGHT PRODUCT PANEL
+            RIGHT PRODUCT AREA
         ================================================= */}
 
         <aside className="kit-product-panel">
-          {/* ===============================================
-              PRODUCT MEDIA
-          =============================================== */}
+          {/* =================================================
+              SEPARATE PRODUCT VIDEO / MEDIA ELEMENT
+          ================================================= */}
 
           <div className="kit-product-media">
             {kit.mediaType === "video" ? (
@@ -366,9 +343,9 @@ function Fourth({ id }) {
             )}
           </div>
 
-          {/* ===============================================
-              PRODUCT INFORMATION
-          =============================================== */}
+          {/* =================================================
+              SEPARATE PRODUCT INFORMATION ELEMENT
+          ================================================= */}
 
           <div className="kit-product-info" key={kit.id}>
             <span className="product-kicker">{kit.kicker}</span>
@@ -379,11 +356,15 @@ function Fourth({ id }) {
 
             <h3>{kit.heading}</h3>
 
-            <p>{kit.description}</p>
+            {/* PROJECT DESCRIPTION */}
 
-            {/* =============================================
-                PRODUCT SPECS
-            ============================================= */}
+            <div className="project-description">
+              <span className="description-label">PROJECT DESCRIPTION</span>
+
+              <p>{kit.description}</p>
+            </div>
+
+            {/* PRODUCT SPECIFICATIONS */}
 
             <div className="kit-specs">
               {kit.specs.map(([label, value]) => (
@@ -393,22 +374,6 @@ function Fourth({ id }) {
                   <strong>{value}</strong>
                 </div>
               ))}
-            </div>
-
-            {/* =============================================
-                TECHNICAL DRAWING PLACEHOLDER
-            ============================================= */}
-
-            <div className="technical-drawing">
-              <div className="drawing-grid" />
-
-              <div className="drawing-placeholder">
-                <span>TECHNICAL DRAWING</span>
-
-                <strong>{kit.drawingLabel}</strong>
-
-                <i />
-              </div>
             </div>
           </div>
         </aside>

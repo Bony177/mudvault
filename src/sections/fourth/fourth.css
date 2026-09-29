@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Anton+SC&display=swap");
 
+
+/* =========================================================
+   ROOT
+========================================================= */
+
 :root {
   --race-orange: #ff4b12;
   --race-orange-dark: #e83d08;
@@ -31,6 +36,7 @@
 
   overflow: hidden;
 }
+
 
 .race-kit-page {
   position: relative;
@@ -68,6 +74,7 @@
   justify-content: space-between;
 }
 
+
 .race-kit-logo {
   display: flex;
   flex-direction: column;
@@ -75,20 +82,28 @@
   line-height: 0.85;
 }
 
+
 .race-kit-logo strong {
+  font-family: var(--race-font);
+
   font-size: clamp(18px, 1.6vw, 24px);
   font-weight: 950;
+
   letter-spacing: -1px;
 }
+
 
 .race-kit-logo span {
   margin-top: 3px;
 
   font-family: var(--body-font);
+
   font-size: 6px;
   font-weight: 900;
+
   letter-spacing: 0.6px;
 }
+
 
 .race-kit-nav {
   display: flex;
@@ -97,10 +112,13 @@
   gap: clamp(18px, 2.4vw, 35px);
 }
 
+
 .race-kit-nav a {
   color: var(--race-orange);
 
   text-decoration: none;
+
+  font-family: var(--race-font);
 
   font-size: clamp(9px, 0.72vw, 11px);
   font-weight: 900;
@@ -108,9 +126,11 @@
   transition: opacity 0.2s ease;
 }
 
+
 .race-kit-nav a:hover {
   opacity: 0.5;
 }
+
 
 .race-kit-menu {
   width: 21px;
@@ -128,6 +148,7 @@
 
   cursor: pointer;
 }
+
 
 .race-kit-menu span {
   display: block;
@@ -159,11 +180,14 @@
   width: clamp(180px, 21vw, 300px);
 }
 
+
 .race-kit-title {
   display: flex;
   flex-direction: column;
 
   color: var(--race-orange);
+
+  font-family: var(--race-font);
 
   font-size: clamp(105px, 13vw, 215px);
   font-weight: 950;
@@ -174,18 +198,23 @@
   user-select: none;
 }
 
+
 .race-kit-title span {
   display: block;
 }
+
 
 .race-kit-copy {
   width: clamp(155px, 16vw, 225px);
 }
 
+
 .race-kit-copy h2 {
   margin: 0;
 
   color: var(--race-orange);
+
+  font-family: var(--race-font);
 
   font-size: clamp(25px, 2.5vw, 39px);
   line-height: 0.92;
@@ -193,6 +222,7 @@
   font-weight: 950;
   letter-spacing: -0.02em;
 }
+
 
 .orange-line {
   width: 27px;
@@ -203,6 +233,7 @@
   background: var(--race-orange);
 }
 
+
 .race-kit-copy p {
   margin: 0;
 
@@ -212,8 +243,10 @@
 
   font-size: clamp(7px, 0.62vw, 10px);
   font-weight: 800;
+
   line-height: 1.35;
 }
+
 
 .race-kit-button {
   width: clamp(130px, 10vw, 150px);
@@ -227,11 +260,13 @@
   justify-content: space-between;
 
   border: 1px solid var(--race-orange);
+
   background: transparent;
 
   color: var(--race-orange);
 
   font-family: var(--race-font);
+
   font-size: 9px;
   font-weight: 900;
 
@@ -242,10 +277,12 @@
     color 0.2s ease;
 }
 
+
 .race-kit-button:hover {
   background: var(--race-orange);
   color: var(--race-white);
 }
+
 
 .race-kit-button span:last-child {
   font-family: Arial, sans-serif;
@@ -255,10 +292,6 @@
 
 /* =========================================================
    CENTER RIDER
-
-   IMPORTANT:
-   Hotspot percentages are relative to THIS element.
-   Keep rider and hotspot layer together.
 ========================================================= */
 
 .kit-rider-stage {
@@ -279,6 +312,7 @@
   overflow: visible;
 }
 
+
 .kit-rider-video {
   display: block;
 
@@ -294,9 +328,6 @@
 
 /* =========================================================
    INVISIBLE PRODUCTION HOTSPOTS
-
-   Hotspots remain fully clickable.
-   No borders, labels, handles or debug UI.
 ========================================================= */
 
 .hotspot-layer {
@@ -308,6 +339,7 @@
 
   pointer-events: none;
 }
+
 
 .kit-hotspot {
   position: absolute;
@@ -327,39 +359,54 @@
   cursor: pointer;
 }
 
+
 .kit-hotspot:hover,
 .kit-hotspot:focus,
 .kit-hotspot:active {
   border: none;
   outline: none;
+
   background: transparent;
 }
 
 
 /* =========================================================
-   PRODUCT PANEL
+   RIGHT PRODUCT AREA
 ========================================================= */
 
 .kit-product-panel {
   position: absolute;
 
-  top: 10%;
-  right: 7vw;
+  top: 8%;
+  right: 5.5vw;
 
-  width: clamp(230px, 30vw, 500px);
-  height: 82%;
+  width: clamp(280px, 30vw, 500px);
+
+  height: 100%;
 
   z-index: 30;
 
   display: flex;
   flex-direction: column;
 
+  gap: 16px;
+
   color: var(--race-orange);
 }
 
+
+/* =========================================================
+   PRODUCT MEDIA
+   SEPARATE ELEMENT
+========================================================= */
+
 .kit-product-media {
+  position: relative;
+
   width: 100%;
-  height: 44%;
+  height: 50%;
+
+  flex-shrink: 0;
 
   display: flex;
   align-items: center;
@@ -367,16 +414,16 @@
 
   overflow: hidden;
 
-  background:
-    radial-gradient(
-      circle,
-      rgba(0, 0, 0, 0.04),
-      transparent 62%
-    ),
-    transparent;
 }
 
+
+/* =========================================================
+   PRODUCT VIDEO
+========================================================= */
+
 .product-video {
+  display: block;
+
   width: 100%;
   height: 100%;
 
@@ -385,29 +432,40 @@
   animation: productMediaIn 0.55s ease both;
 }
 
+
+/* =========================================================
+   PRODUCT PLACEHOLDER
+========================================================= */
+
 .product-placeholder {
   width: 82%;
-  height: 86%;
+  height: 82%;
 
   display: flex;
   flex-direction: column;
+
   align-items: center;
   justify-content: center;
 
-  border: 1px dashed rgba(255, 75, 18, 0.55);
+  border: 1px dashed rgba(255, 75, 18, 0.45);
 
   color: var(--race-orange);
 
   text-align: center;
 }
 
+
 .product-placeholder span {
-  font-size: clamp(18px, 2vw, 28px);
+  font-family: var(--race-font);
+
+  font-size: clamp(20px, 2.2vw, 32px);
+
   line-height: 1;
 }
 
+
 .product-placeholder small {
-  margin-top: 8px;
+  margin-top: 9px;
 
   font-family: var(--body-font);
 
@@ -420,13 +478,25 @@
 
 /* =========================================================
    PRODUCT INFORMATION
+   SEPARATE ELEMENT
 ========================================================= */
 
 .kit-product-info {
   width: 100%;
 
+  flex: 1;
+
+  min-height: 0;
+
+  padding: 4px 0 12px;
+
   animation: productInfoIn 0.55s ease both;
 }
+
+
+/* =========================================================
+   PRODUCT KICKER
+========================================================= */
 
 .product-kicker {
   display: block;
@@ -436,199 +506,164 @@
   font-size: 8px;
   font-weight: 900;
 
-  letter-spacing: 1.2px;
+  letter-spacing: 1.3px;
 }
+
+
+/* =========================================================
+   PRODUCT TITLE
+========================================================= */
 
 .kit-product-info h2 {
   margin: 3px 0 0;
 
-  font-size: clamp(29px, 3vw, 47px);
+  color: var(--race-orange);
+
+  font-family: var(--race-font);
+
+  font-size: clamp(31px, 3vw, 48px);
+
   font-weight: 950;
 
   line-height: 0.9;
+
   letter-spacing: -0.03em;
 }
+
+
+/* =========================================================
+   PRODUCT HEADING
+========================================================= */
 
 .kit-product-info h3 {
   margin: 0;
 
-  font-size: clamp(17px, 1.55vw, 25px);
+  color: var(--race-orange);
+
+  font-family: var(--race-font);
+
+  font-size: clamp(18px, 1.55vw, 25px);
 
   line-height: 1;
+
   font-weight: 950;
 }
 
-.kit-product-info p {
-  max-width: 360px;
 
-  margin: 9px 0 0;
+/* =========================================================
+   PROJECT DESCRIPTION
+========================================================= */
+
+.project-description {
+  width: 100%;
+
+  margin-top: 13px;
+  margin-bottom: 14px;
+}
+
+
+.description-label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: var(--race-orange);
+
+  font-family: var(--race-font);
+
+  font-size: 9px;
+
+  letter-spacing: 0.5px;
+}
+
+
+.project-description p {
+  max-width: 500px;
+
+  margin: 0;
 
   color: var(--race-orange);
 
   font-family: var(--body-font);
 
   font-size: clamp(8px, 0.68vw, 10px);
+
   font-weight: 700;
 
-  line-height: 1.4;
+  line-height: 1.48;
 }
 
 
 /* =========================================================
-   SPECS
+   SPECS TABLE
 ========================================================= */
 
 .kit-specs {
-  margin-top: 12px;
+  width: 100%;
+
+  margin-top: 5px;
 
   display: grid;
+
   grid-template-columns: 1fr 1fr;
 
-  border-top: 1px solid rgba(255, 75, 18, 0.3);
+  border-top: 1px solid rgba(255, 75, 18, 0.35);
 }
 
-.kit-spec {
-  min-height: 42px;
 
-  padding: 7px 8px 7px 0;
+.kit-spec {
+  min-height: 46px;
+
+  padding: 8px 9px 8px 0;
 
   display: flex;
   flex-direction: column;
+
   justify-content: center;
 
-  border-bottom: 1px solid rgba(255, 75, 18, 0.3);
+  border-bottom: 1px solid rgba(255, 75, 18, 0.35);
 }
+
 
 .kit-spec:nth-child(odd) {
-  border-right: 1px solid rgba(255, 75, 18, 0.3);
+  border-right: 1px solid rgba(255, 75, 18, 0.35);
 }
+
 
 .kit-spec:nth-child(even) {
-  padding-left: 9px;
+  padding-left: 10px;
 }
 
-.kit-spec span {
-  font-family: var(--body-font);
 
-  font-size: 6px;
+.kit-spec span {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: var(--race-orange);
+
+  font-family: var(--race-font);
+
+  font-size: 7px;
+
   font-weight: 900;
 
   letter-spacing: 0.8px;
 }
 
+
 .kit-spec strong {
-  margin-top: 2px;
+  display: block;
+
+  color: var(--race-orange);
 
   font-family: var(--body-font);
 
   font-size: 7px;
+
   font-weight: 900;
 
-  line-height: 1.1;
-}
-
-
-/* =========================================================
-   TECHNICAL DRAWING PLACEHOLDER
-========================================================= */
-
-.technical-drawing {
-  position: relative;
-
-  width: 100%;
-  height: 115px;
-
-  margin-top: 12px;
-
-  overflow: hidden;
-
-  border: 1px solid rgba(255, 75, 18, 0.25);
-}
-
-.drawing-grid {
-  position: absolute;
-
-  inset: 0;
-
-  opacity: 0.55;
-
-  background-image:
-    linear-gradient(
-      rgba(255, 75, 18, 0.12) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255, 75, 18, 0.12) 1px,
-      transparent 1px
-    );
-
-  background-size: 14px 14px;
-}
-
-.drawing-placeholder {
-  position: absolute;
-
-  inset: 0;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  color: rgba(255, 75, 18, 0.65);
-}
-
-.drawing-placeholder span {
-  font-family: var(--body-font);
-
-  font-size: 6px;
-  font-weight: 900;
-
-  letter-spacing: 1px;
-}
-
-.drawing-placeholder strong {
-  margin-top: 4px;
-
-  font-size: clamp(15px, 1.3vw, 20px);
-
-  line-height: 1;
-
-  text-align: center;
-}
-
-.drawing-placeholder i {
-  position: relative;
-
-  display: block;
-
-  width: 95px;
-  height: 35px;
-
-  margin-top: 8px;
-
-  border: 1px solid rgba(255, 75, 18, 0.55);
-}
-
-.drawing-placeholder i::before,
-.drawing-placeholder i::after {
-  content: "";
-
-  position: absolute;
-
-  left: 12px;
-  right: 12px;
-
-  border-top: 1px dashed rgba(255, 75, 18, 0.5);
-}
-
-.drawing-placeholder i::before {
-  top: 10px;
-}
-
-.drawing-placeholder i::after {
-  top: 22px;
+  line-height: 1.2;
 }
 
 
@@ -657,6 +692,7 @@
   letter-spacing: 0.8px;
 }
 
+
 .kit-page-index i {
   display: block;
 
@@ -672,27 +708,42 @@
 ========================================================= */
 
 @keyframes productMediaIn {
+
   from {
     opacity: 0;
-    transform: translateY(15px) scale(0.97);
+
+    transform:
+      translateY(15px)
+      scale(0.97);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+
+    transform:
+      translateY(0)
+      scale(1);
   }
+
 }
 
+
 @keyframes productInfoIn {
+
   from {
     opacity: 0;
-    transform: translateY(12px);
+
+    transform:
+      translateY(12px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+
+    transform:
+      translateY(0);
   }
+
 }
 
 
@@ -701,23 +752,50 @@
 ========================================================= */
 
 @media (max-width: 1000px) {
+
   .race-kit-left {
     width: 180px;
   }
 
+
   .race-kit-title {
-    font-size: clamp(85px, 13vw, 150px);
+    font-size:
+      clamp(85px, 13vw, 150px);
   }
+
 
   .kit-rider-stage {
     left: 19%;
+
     width: 46%;
   }
 
+
   .kit-product-panel {
     right: 2vw;
-    width: 29vw;
+
+    width: 31vw;
+
+    height: 86%;
   }
+
+
+  .kit-product-media {
+    height: 36%;
+  }
+
+
+  .project-description p {
+    font-size: 8px;
+
+    line-height: 1.4;
+  }
+
+
+  .kit-spec {
+    min-height: 42px;
+  }
+
 }
 
 
@@ -726,15 +804,20 @@
 ========================================================= */
 
 @media (max-width: 700px) {
+
   .race-kit-section {
     min-height: 760px;
+
     height: auto;
   }
 
+
   .race-kit-page {
     min-height: 760px;
+
     height: 100vh;
   }
+
 
   .race-kit-header {
     top: 18px;
@@ -743,21 +826,28 @@
     right: 5vw;
   }
 
+
   .race-kit-nav a {
     display: none;
   }
 
+
   .race-kit-left {
     left: 5vw;
+
     top: 12vh;
+
     bottom: auto;
 
     width: 145px;
   }
 
+
   .race-kit-title {
-    font-size: clamp(72px, 20vw, 115px);
+    font-size:
+      clamp(72px, 20vw, 115px);
   }
+
 
   .race-kit-copy {
     position: absolute;
@@ -767,66 +857,101 @@
     width: 135px;
   }
 
+
   .race-kit-copy h2 {
     font-size: 22px;
   }
+
 
   .race-kit-copy p {
     font-size: 6px;
   }
 
+
   .race-kit-button {
     width: 125px;
+
     height: 27px;
 
     font-size: 7px;
   }
 
+
   .kit-rider-stage {
     left: 8%;
+
     top: 23%;
 
     width: 55%;
+
     height: 52%;
   }
 
+
   .kit-product-panel {
     top: 57%;
+
     right: 5vw;
 
     width: 38vw;
+
     height: 39%;
+
+    gap: 9px;
 
     overflow-y: auto;
   }
 
+
   .kit-product-media {
     height: 38%;
+
+    min-height: 120px;
   }
+
+
+  .kit-product-info {
+    padding-bottom: 15px;
+  }
+
 
   .kit-product-info h2 {
     font-size: 25px;
   }
 
+
   .kit-product-info h3 {
     font-size: 14px;
   }
 
-  .kit-product-info p {
+
+  .description-label {
     font-size: 7px;
   }
+
+
+  .project-description {
+    margin-top: 9px;
+    margin-bottom: 10px;
+  }
+
+
+  .project-description p {
+    font-size: 7px;
+
+    line-height: 1.4;
+  }
+
 
   .kit-specs {
     display: none;
   }
 
-  .technical-drawing {
-    height: 60px;
-  }
 
   .kit-page-index {
     display: none;
   }
+
 }
 
 
@@ -835,12 +960,15 @@
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
+
   .product-video,
   .kit-product-info {
     animation: none;
   }
 
+
   .race-kit-button {
     transition: none;
   }
+
 }
