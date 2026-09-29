@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import "./Fourth.css";
+import "./fourth.css";
 
 import riderVideo from "../../assets/man.webm";
 import helmetVideo from "../../assets/helmet.webm";
@@ -86,7 +86,7 @@ const KIT_DATA = {
     heading: "BUILT FOR IMPACT.",
 
     description:
-      "The MudVault race helmet is designed as a complete head-protection system for demanding off-road environments. Its full-coverage profile combines a protective outer shell, secure retention and an open field of vision to keep the rider focused through high-speed sections, jumps, corners and unpredictable terrain. Ventilation channels are integrated into the overall form to encourage airflow while maintaining a compact race-focused silhouette. Every element of the concept is shaped around stability, visibility and confidence when the pace increases.",
+      "The MudVault race helmet is designed as a complete head-protection system for demanding off-road environments. Its full-coverage profile combines a protective outer shell, secure retention and an open field of vision to keep the rider focused through the unpredictable terrain. Ventilation channels are integrated into the overall form to encourage airflow . Every element of the concept is shaped around stability, visibility and confidence when the pace increases.",
 
     specs: [
       ["SHELL", "IMPACT-RESISTANT CONSTRUCTION"],
@@ -166,7 +166,7 @@ const KIT_DATA = {
     heading: "LOCKED TO THE BIKE.",
 
     description:
-      "The MudVault race boots are designed to provide structured protection around the foot, ankle and lower leg while maintaining the movement required for active riding. The construction concept focuses on stability around the ankle and controlled interaction with the motorcycle, particularly through foot positioning, braking and aggressive terrain changes. A reinforced riding profile completes the system with a balance between protection, support and rider control.",
+      "The MudVault race boots provide structured protection around the foot, ankle and lower leg while maintaining the movement required for active riding. The construction concept focuses on stability around the ankle and controlled interaction with the motorcycle,  braking and aggressive terrain changes. A reinforced riding profile completes the system with a balance between protection, support and rider control.",
 
     specs: [
       ["ANKLE", "STRUCTURAL SUPPORT"],
@@ -238,9 +238,13 @@ function Fourth({ id }) {
 
           <nav className="race-kit-nav">
             <a href="#track">TRACK</a>
+
             <a href="#events">EVENTS</a>
+
             <a href="#about">ABOUT</a>
+
             <a href="#gallery">GALLERY</a>
+
             <a href="#contact">CONTACT</a>
 
             <button className="race-kit-menu" aria-label="Open menu">
@@ -258,6 +262,7 @@ function Fourth({ id }) {
         <div className="race-kit-left">
           <div className="race-kit-title">
             <span>RACE</span>
+
             <span>KIT</span>
           </div>
 
@@ -281,6 +286,7 @@ function Fourth({ id }) {
 
             <button className="race-kit-button">
               <span>EXPLORE THE KIT</span>
+
               <span>→</span>
             </button>
           </div>
@@ -313,70 +319,64 @@ function Fourth({ id }) {
         </div>
 
         {/* =================================================
-            RIGHT PRODUCT AREA
+            PRODUCT MEDIA
+            COMPLETELY INDEPENDENT ELEMENT
         ================================================= */}
 
-        <aside className="kit-product-panel">
-          {/* =================================================
-              SEPARATE PRODUCT VIDEO / MEDIA ELEMENT
-          ================================================= */}
+        <div className="kit-product-media">
+          {kit.mediaType === "video" ? (
+            <video
+              className="product-video"
+              key={kit.media}
+              muted
+              autoPlay
+              loop
+              playsInline
+              preload="auto"
+            >
+              <source src={kit.media} type="video/webm" />
+            </video>
+          ) : (
+            <div className="product-placeholder">
+              <span>{kit.name}</span>
 
-          <div className="kit-product-media">
-            {kit.mediaType === "video" ? (
-              <video
-                className="product-video"
-                key={kit.media}
-                muted
-                autoPlay
-                loop
-                playsInline
-                preload="auto"
-              >
-                <source src={kit.media} type="video/webm" />
-              </video>
-            ) : (
-              <div className="product-placeholder">
-                <span>{kit.name}</span>
+              <small>MEDIA PLACEHOLDER</small>
+            </div>
+          )}
+        </div>
 
-                <small>MEDIA PLACEHOLDER</small>
+        {/* =================================================
+            PRODUCT INFORMATION
+            COMPLETELY INDEPENDENT ELEMENT
+        ================================================= */}
+
+        <div className="kit-product-info" key={kit.id}>
+          <span className="product-kicker">{kit.kicker}</span>
+
+          <h2>{kit.name}</h2>
+
+          <div className="orange-line" />
+
+          <h3>{kit.heading}</h3>
+
+          {/* PROJECT DESCRIPTION */}
+
+          <div className="project-description">
+            <p>{kit.description}</p>
+          </div>
+
+          {/* PRODUCT SPECIFICATIONS */}
+
+          <div className="kit-specs">
+            {kit.specs.map(([label, value]) => (
+              <div className="kit-spec" key={label}>
+                <span>{label}</span>
+
+                <strong>{value}</strong>
               </div>
-            )}
+            ))}
           </div>
-
-          {/* =================================================
-              SEPARATE PRODUCT INFORMATION ELEMENT
-          ================================================= */}
-
-          <div className="kit-product-info" key={kit.id}>
-            <span className="product-kicker">{kit.kicker}</span>
-
-            <h2>{kit.name}</h2>
-
-            <div className="orange-line" />
-
-            <h3>{kit.heading}</h3>
-
-            {/* PROJECT DESCRIPTION */}
-
-            <div className="project-description">
-              {/*<span className="description-label">PROJECT DESCRIPTION</span>*/}
-
-              <p>{kit.description}</p>
-            </div>
-
-            {/* PRODUCT SPECIFICATIONS */}
-
-            <div className="kit-specs">
-              {kit.specs.map(([label, value]) => (
-                <div className="kit-spec" key={label}>
-                  <span>{label}</span>
-
-                  <strong>{value}</strong>
-                </div>
-              ))}
-            </div>
-          </div>
-        </aside>
+        </div>
 
         {/* =================================================
             PAGE NUMBER
