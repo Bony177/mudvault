@@ -344,9 +344,9 @@
   position: absolute;
 
   top: 10%;
-  right: 3.5vw;
+  right: 7vw;
 
-  width: clamp(230px, 25vw, 390px);
+  width: clamp(230px, 30vw, 500px);
   height: 82%;
 
   z-index: 30;
