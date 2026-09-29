@@ -403,8 +403,11 @@
 .kit-product-media {
   position: relative;
 
-  width: 100%;
-  height: 50%;
+  --media-width: 100%;
+  --media-height: 50%;
+
+  width: var(--media-width);
+  height: var(--media-height);
 
   flex-shrink: 0;
 
@@ -482,7 +485,9 @@
 ========================================================= */
 
 .kit-product-info {
-  width: 100%;
+  --info-width: 100%;
+
+  width: var(--info-width);
 
   flex: 1;
 
@@ -591,6 +596,8 @@
   font-weight: 700;
 
   line-height: 1.48;
+
+  text-transform: uppercase;
 }
 
 
@@ -781,7 +788,7 @@
 
 
   .kit-product-media {
-    height: 36%;
+    --media-height: 36%;
   }
 
 
@@ -904,7 +911,7 @@
 
 
   .kit-product-media {
-    height: 38%;
+    --media-height: 38%;
 
     min-height: 120px;
   }

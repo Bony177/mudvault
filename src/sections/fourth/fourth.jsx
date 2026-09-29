@@ -359,7 +359,7 @@ function Fourth({ id }) {
             {/* PROJECT DESCRIPTION */}
 
             <div className="project-description">
-              <span className="description-label">PROJECT DESCRIPTION</span>
+              {/*<span className="description-label">PROJECT DESCRIPTION</span>*/}
 
               <p>{kit.description}</p>
             </div>
