@@ -237,3 +237,32 @@
     width: 36px;
   }
 }
+
+/* =========================================================
+   FOURTH SECTION — ORANGE NAVBAR
+========================================================= */
+
+.navbar-orange {
+  color: #ff4b12;
+}
+
+
+/* NAV LINKS */
+
+.navbar-orange .navbar-links a {
+  color: #ff4b12;
+}
+
+
+/* MENU */
+
+.navbar-orange .menu-button span {
+  background: #ff4b12;
+}
+
+
+/* LOGO */
+
+.navbar-orange .navbar-logo img {
+  filter: none;
+}

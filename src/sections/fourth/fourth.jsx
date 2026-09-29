@@ -227,12 +227,6 @@ function Fourth({ id }) {
     <section id={id} className="race-kit-section">
       <div className="race-kit-page">
         {/* =================================================
-            HEADER
-        ================================================= */}
-
-        <header className="race-kit-header"></header>
-
-        {/* =================================================
             LEFT SIDE
         ================================================= */}
 
