@@ -405,6 +405,7 @@
 ========================================================= */
 
 .product-video {
+  mix-blend-mode: multiply;
   display: block;
 
   width: 100%;
