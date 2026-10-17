@@ -153,9 +153,8 @@ function Hero() {
           <h2>RIDE BEYOND LIMITS</h2>
 
           <p>
-            Power, freedom and adventure come together in one unforgettable
-            machine.
-          </p>
+            At MUDVAULT, we believe riding is more than just a sport; it is a feeling of freedom, a pursuit of adventure, and an escape from the ordinary. Built around the raw spirit of motocross and the untamed beauty of off-road terrain, our track aims to create an experience where adrenaline meets exploration and every ride becomes a story worth telling. From challenging corners and rugged trails to the thrill of accelerating across open dirt, every moment invites you to push your limits, discover your potential, and reconnect with the simple joy of riding. Whether you're an experienced rider chasing the perfect line or an enthusiast looking for something different, MUDVAULT offers a space to develop your skills, embrace new challenges, and share your passion with a community driven by the same spirit of adventure. We want every visit to feel like a break from routine, where the roar of engines replaces the noise of everyday life and the track becomes your playground. More than just a destination, MUDVAULT is a celebration of freedom, determination, and the beautifully unpredictable nature of off-road riding.
+            </p>
         </div>
 
         {/* Title + Logos */}

@@ -117,7 +117,7 @@
   /* FINAL resting position */
   bottom: 7vh;
 
-  width: 310px;
+  width: 550px;
   box-sizing: border-box;
 
   padding: 22px 24px;
@@ -125,7 +125,7 @@
   color: white;
 
 
-  z-index: 20;
+  z-index: 2;
 
   pointer-events: none;
 
