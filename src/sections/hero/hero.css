@@ -111,28 +111,25 @@
    HERO SCROLLING TEXT
 ========================================= */
 
+
+/* HERO TEXT BOXES */
+
 .hero-text {
   position: absolute;
+  bottom: -10vh;
 
-  /* FINAL resting position */
-  bottom: 7vh;
-
-  width: 550px;
+  width: 650px;
   box-sizing: border-box;
-
   padding: 22px 24px;
 
   color: white;
-
-
   z-index: 2;
-
   pointer-events: none;
 
+  /* GSAP controls transform and opacity */
   will-change: transform, opacity;
 
   backdrop-filter: blur(2px);
-
   -webkit-backdrop-filter: blur(2px);
 }
 
@@ -151,9 +148,7 @@
 
   font-size: 23px;
   line-height: 1.05;
-
   font-weight: 700;
-
   letter-spacing: 1.5px;
 }
 
@@ -162,9 +157,9 @@
 
   font-size: 14px;
   line-height: 1.55;
-
   opacity: 0.9;
 }
+
 /* =========================================
    TITLE CONTAINER
 ========================================= */
