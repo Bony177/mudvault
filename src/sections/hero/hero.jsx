@@ -11,14 +11,22 @@ import gridPic from "../../assets/gridpic.png";
 // =========================================
 
 // Increase this to make the COMPLETE text movement slower.
-// Recommended values: 1.2 - 2.5
-const TEXT_MOVEMENT_DURATION = 1.2;
+const TEXT_MOVEMENT_DURATION = 3;
 
-// Percentage of text movement allocated to entrance.
+// Percentage of movement allocated to entrance.
 const TEXT_ENTER_RATIO = 0.3;
 
 // Remaining percentage is allocated to exit.
 const TEXT_EXIT_RATIO = 1 - TEXT_ENTER_RATIO;
+
+// How far the text moves upward before disappearing.
+const TEXT_EXIT_DISTANCE = "-50vh";
+
+// When the text starts fading during its upward exit.
+// 0.0 = immediately
+// 0.45 = 45% through exit
+// 0.9 = near the end
+const TEXT_FADE_START = 0.45;
 
 function Hero() {
   const heroRef = useRef(null);
@@ -47,15 +55,21 @@ function Hero() {
     const setupAnimation = () => {
       if (!video.duration || timeline) return;
 
-      const textElements = [leftTextRef.current, rightTextRef.current];
+      const leftText = leftTextRef.current;
+      const rightText = rightTextRef.current;
+      const textElements = [leftText, rightText];
 
-      // Initial state: hidden below the viewport.
+      const enterDuration = TEXT_MOVEMENT_DURATION * TEXT_ENTER_RATIO;
+
+      const exitDuration = TEXT_MOVEMENT_DURATION * TEXT_EXIT_RATIO;
+
+      // INITIAL STATE: TEXT STARTS BELOW
       gsap.set(textElements, {
         y: "35vh",
         opacity: 0,
       });
 
-      // Main scroll-controlled timeline.
+      // MAIN SCROLL-CONTROLLED TIMELINE
       timeline = gsap.timeline({
         scrollTrigger: {
           trigger: heroRef.current,
@@ -66,11 +80,7 @@ function Hero() {
         },
       });
 
-      // =========================================
       // BIKE VIDEO
-      // Original animation duration preserved.
-      // =========================================
-
       timeline.to(
         video,
         {
@@ -81,14 +91,7 @@ function Hero() {
         0,
       );
 
-      // =========================================
       // TEXT ENTERS FROM BELOW
-      // =========================================
-
-      const enterDuration = TEXT_MOVEMENT_DURATION * TEXT_ENTER_RATIO;
-
-      const exitDuration = TEXT_MOVEMENT_DURATION * TEXT_EXIT_RATIO;
-
       timeline.to(
         textElements,
         {
@@ -100,20 +103,26 @@ function Hero() {
         0,
       );
 
-      // =========================================
-      // TEXT CONTINUES UPWARD AND FADES OUT
-      // Starts immediately after entrance.
-      // =========================================
-
+      // TEXT SLIDES UPWARD
       timeline.to(
         textElements,
         {
-          y: "-50vh",
-          opacity: 0,
+          y: TEXT_EXIT_DISTANCE,
           ease: "none",
           duration: exitDuration,
         },
         enterDuration,
+      );
+
+      // TEXT FADES DURING UPWARD MOVEMENT
+      timeline.to(
+        textElements,
+        {
+          opacity: 0,
+          ease: "none",
+          duration: exitDuration * (1 - TEXT_FADE_START),
+        },
+        enterDuration + exitDuration * TEXT_FADE_START,
       );
 
       ScrollTrigger.refresh();
@@ -162,7 +171,7 @@ function Hero() {
           </p>
         </div>
 
-        {/* RIGHT TEXT */}
+        {/* RIGHT TEXT + GALLERY */}
         <div ref={rightTextRef} className="hero-text hero-text-right">
           <p>
             At MUDVAULT, we believe riding is more than just a sport; it is a
@@ -183,6 +192,7 @@ function Hero() {
             a destination, MUDVAULT is a celebration of freedom, determination,
             and the beautifully unpredictable nature of off-road riding.
           </p>
+
           <img
             className="hero-gridpic"
             src={gridPic}
