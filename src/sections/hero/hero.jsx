@@ -117,7 +117,7 @@ function Hero() {
           trigger: heroRef.current,
           start: "top top",
           end: "bottom bottom",
-          scrub: 0.8,
+          scrub: true,
           invalidateOnRefresh: true,
           onRefresh: updateFadeMask,
         },
@@ -186,7 +186,7 @@ function Hero() {
         {
           currentTime: video.duration,
           ease: "none",
-          duration: animationDuration,
+          duration: TEXT_MOVEMENT_DURATION,
         },
         0,
       );
