@@ -26,7 +26,7 @@ const TEXT_EXIT_DISTANCE = "-50vh";
 
 // Fade line position from the top of the viewport
 // 35 = 35% of viewport height
-const TEXT_FADE_LINE_VH = 35;
+const TEXT_FADE_LINE_VH = 55;
 
 // Width of the gradual fade transition in pixels
 const TEXT_FADE_SIZE = 100;
@@ -101,7 +101,6 @@ function Hero() {
       // Right text enters fully visible.
       gsap.set(rightText, {
         y: "35vh",
-        opacity: 1,
       });
 
       // =========================================
