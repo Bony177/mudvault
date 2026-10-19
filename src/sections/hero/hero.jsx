@@ -1,10 +1,10 @@
-
 import { useEffect, useRef } from "react";
 
 import "./Hero.css";
 import background from "../../assets/background.webp";
 import mudvaultTitle from "../../assets/mudvault.png";
 import bikeVideo from "../../assets/bike.webm";
+import gridPic from "../../assets/gridpic.png";
 
 // =========================================
 // ADJUSTABLE TEXT ANIMATION SETTINGS
@@ -47,10 +47,7 @@ function Hero() {
     const setupAnimation = () => {
       if (!video.duration || timeline) return;
 
-      const textElements = [
-        leftTextRef.current,
-        rightTextRef.current,
-      ];
+      const textElements = [leftTextRef.current, rightTextRef.current];
 
       // Initial state: hidden below the viewport.
       gsap.set(textElements, {
@@ -81,18 +78,16 @@ function Hero() {
           ease: "none",
           duration: 1,
         },
-        0
+        0,
       );
 
       // =========================================
       // TEXT ENTERS FROM BELOW
       // =========================================
 
-      const enterDuration =
-        TEXT_MOVEMENT_DURATION * TEXT_ENTER_RATIO;
+      const enterDuration = TEXT_MOVEMENT_DURATION * TEXT_ENTER_RATIO;
 
-      const exitDuration =
-        TEXT_MOVEMENT_DURATION * TEXT_EXIT_RATIO;
+      const exitDuration = TEXT_MOVEMENT_DURATION * TEXT_EXIT_RATIO;
 
       timeline.to(
         textElements,
@@ -102,7 +97,7 @@ function Hero() {
           ease: "none",
           duration: enterDuration,
         },
-        0
+        0,
       );
 
       // =========================================
@@ -118,7 +113,7 @@ function Hero() {
           ease: "none",
           duration: exitDuration,
         },
-        enterDuration
+        enterDuration,
       );
 
       ScrollTrigger.refresh();
@@ -131,10 +126,7 @@ function Hero() {
     }
 
     return () => {
-      video.removeEventListener(
-        "loadedmetadata",
-        setupAnimation
-      );
+      video.removeEventListener("loadedmetadata", setupAnimation);
 
       if (timeline) {
         timeline.scrollTrigger?.kill();
@@ -146,13 +138,8 @@ function Hero() {
   return (
     <section ref={heroRef} className="hero">
       <div className="hero-sticky">
-
         {/* BACKGROUND */}
-        <img
-          className="hero-background"
-          src={background}
-          alt=""
-        />
+        <img className="hero-background" src={background} alt="" />
 
         {/* BIKE VIDEO */}
         <video
@@ -166,65 +153,49 @@ function Hero() {
         </video>
 
         {/* LEFT TEXT */}
-        <div
-          ref={leftTextRef}
-          className="hero-text hero-text-left"
-        >
+        <div ref={leftTextRef} className="hero-text hero-text-left">
           <h2>BUILT FOR THE WILD</h2>
 
           <p>
-            Designed to conquer every road, every trail,
-            and everything in between.
+            Designed to conquer every road, every trail, and everything in
+            between.
           </p>
         </div>
 
         {/* RIGHT TEXT */}
-        <div
-          ref={rightTextRef}
-          className="hero-text hero-text-right"
-        >
-          <h2>RIDE BEYOND LIMITS</h2>
-
+        <div ref={rightTextRef} className="hero-text hero-text-right">
           <p>
-            At MUDVAULT, we believe riding is more than just a
-            sport; it is a feeling of freedom, a pursuit of
-            adventure, and an escape from the ordinary. Built
-            around the raw spirit of motocross and the untamed
-            beauty of off-road terrain, our track aims to create
-            an experience where adrenaline meets exploration and
-            every ride becomes a story worth telling. From
-            challenging corners and rugged trails to the thrill
-            of accelerating across open dirt, every moment
-            invites you to push your limits, discover your
-            potential, and reconnect with the simple joy of
-            riding. Whether you're an experienced rider chasing
-            the perfect line or an enthusiast looking for
-            something different, MUDVAULT offers a space to
-            develop your skills, embrace new challenges, and
-            share your passion with a community driven by the
-            same spirit of adventure. We want every visit to
-            feel like a break from routine, where the roar of
-            engines replaces the noise of everyday life and
-            the track becomes your playground. More than just
-            a destination, MUDVAULT is a celebration of freedom,
-            determination, and the beautifully unpredictable
-            nature of off-road riding.
+            At MUDVAULT, we believe riding is more than just a sport; it is a
+            feeling of freedom, a pursuit of adventure, and an escape from the
+            ordinary. Built around the raw spirit of motocross and the untamed
+            beauty of off-road terrain, our track aims to create an experience
+            where adrenaline meets exploration and every ride becomes a story
+            worth telling. From challenging corners and rugged trails to the
+            thrill of accelerating across open dirt, every moment invites you to
+            push your limits, discover your potential, and reconnect with the
+            simple joy of riding. Whether you're an experienced rider chasing
+            the perfect line or an enthusiast looking for something different,
+            MUDVAULT offers a space to develop your skills, embrace new
+            challenges, and share your passion with a community driven by the
+            same spirit of adventure. We want every visit to feel like a break
+            from routine, where the roar of engines replaces the noise of
+            everyday life and the track becomes your playground. More than just
+            a destination, MUDVAULT is a celebration of freedom, determination,
+            and the beautifully unpredictable nature of off-road riding.
           </p>
+          <img
+            className="hero-gridpic"
+            src={gridPic}
+            alt="MUDVAULT motocross track gallery"
+          />
         </div>
 
         {/* TITLE + LOGOS */}
         <div className="hero-content">
-          <img
-            className="hero-title"
-            src={mudvaultTitle}
-            alt="MUDVAULT"
-          />
+          <img className="hero-title" src={mudvaultTitle} alt="MUDVAULT" />
 
-          <span className="hero-logos-placeholder">
-            LOGOS
-          </span>
+          <span className="hero-logos-placeholder">LOGOS</span>
         </div>
-
       </div>
     </section>
   );

@@ -116,9 +116,9 @@
 
 .hero-text {
   position: absolute;
-  bottom: -10vh;
+  bottom: 0vh;
 
-  width: 650px;
+  width: 750px;
   box-sizing: border-box;
   padding: 22px 24px;
 
@@ -200,4 +200,12 @@
 
 
   opacity: 1;
+}
+
+.hero-gridpic {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 20px;
 }
