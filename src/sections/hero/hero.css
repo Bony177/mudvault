@@ -4,34 +4,22 @@
 
 .hero {
   position: relative;
-
   width: 100%;
-
   height: 1000vh;
-
   overflow: clip;
 }
 
-
 /* =========================================
    STICKY SCREEN
-
-   This stays visible while the hero
-   scrolls through its 1000vh duration.
 ========================================= */
 
 .hero-sticky {
   position: sticky;
-
   top: 0;
-
   width: 100%;
-
   height: 100vh;
-
   overflow: hidden;
 }
-
 
 /* =========================================
    BACKGROUND
@@ -39,19 +27,13 @@
 
 .hero-background {
   position: absolute;
-
   inset: 0;
-
   width: 100%;
   height: 100%;
-
   display: block;
-
   object-fit: cover;
-
   z-index: 1;
 }
-
 
 /* =========================================
    BIKE VIDEO
@@ -59,27 +41,18 @@
 
 .hero-bike {
   position: absolute;
-
   inset: 0;
-
   width: 100%;
   height: 100%;
-
   object-fit: contain;
-
   object-position: center;
-
   z-index: 7;
-
   pointer-events: none;
-
   display: block;
-
   transform: translateZ(0);
-
   -webkit-transform: translateZ(0);
 
-  /* Blur filter - adjust --video-blur value to tweak (0px to 20px recommended) */
+  /* Adjust video blur independently */
   filter: blur(var(--video-blur, 1px));
 }
 
@@ -89,7 +62,6 @@
 
 .hero-logos-placeholder {
   position: absolute;
-
   top: 15%;
   left: 26.5%;
   transform: translateX(-50%);
@@ -102,17 +74,9 @@
   pointer-events: none;
 }
 
-
-/* =========================
-   SCROLLING HERO TEXT
-   ========================= */
-
 /* =========================================
-   HERO SCROLLING TEXT
+   SCROLLING HERO TEXT
 ========================================= */
-
-
-/* HERO TEXT BOXES */
 
 .hero-text {
   position: absolute;
@@ -126,26 +90,71 @@
   z-index: 2;
   pointer-events: none;
 
-  /* GSAP controls transform and opacity */
-  will-change: transform, opacity;
+  /* GSAP controls the movement */
+  will-change: transform;
 
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 }
+
+/* LEFT TEXT */
 
 .hero-text-left {
   left: 5vw;
   text-align: left;
 }
 
+/* =========================================
+   RIGHT TEXT + POSITION-BASED FADE
+========================================= */
+
 .hero-text-right {
   right: 7vw;
   text-align: right;
+
+  /*
+    The fade line is calculated relative to this
+    moving container by Hero.jsx.
+
+    Above the fade line: transparent.
+    Across the fade line: gradual transition.
+    Below the fade line: fully visible.
+  */
+
+  --fade-line-y: 35vh;
+  --fade-size: 100px;
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(
+      var(--fade-line-y) - var(--fade-size) / 2
+    ),
+    black calc(
+      var(--fade-line-y) + var(--fade-size) / 2
+    ),
+    black 100%
+  );
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(
+      var(--fade-line-y) - var(--fade-size) / 2
+    ),
+    black calc(
+      var(--fade-line-y) + var(--fade-size) / 2
+    ),
+    black 100%
+  );
 }
+
+/* =========================================
+   TEXT TYPOGRAPHY
+========================================= */
 
 .hero-text h2 {
   margin: 0 0 14px;
-
   font-size: 23px;
   line-height: 1.05;
   font-weight: 700;
@@ -154,7 +163,6 @@
 
 .hero-text p {
   margin: 0;
-
   font-size: 14px;
   line-height: 1.55;
   opacity: 0.9;
@@ -166,20 +174,15 @@
 
 .hero-content {
   position: absolute;
-
   inset: 0;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   z-index: 5;
-
   pointer-events: none;
 }
-
 
 /* =========================================
    MUDVAULT TITLE
@@ -187,25 +190,25 @@
 
 .hero-title {
   position: absolute;
-
   top: 10%;
 
   width: clamp(280px, 87vw, 1800px);
-
   height: auto;
 
   display: block;
-
   object-fit: contain;
-
-
   opacity: 1;
 }
 
+/* =========================================
+   RIGHT-SIDE GALLERY IMAGE
+========================================= */
+
 .hero-gridpic {
+  display: block;
   width: 100%;
   max-width: 480px;
   height: auto;
   object-fit: contain;
-  margin-bottom: 20px;
+  margin: 20px 0 0 auto;
 }
