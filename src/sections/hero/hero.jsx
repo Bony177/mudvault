@@ -10,10 +10,10 @@ import gridPic from "../../assets/gridpic.png";
 // ADJUSTABLE TEXT ANIMATION SETTINGS
 // =========================================
 
-// Overall text movement duration
+// Change this to control how long the text animation takes.
 const TEXT_MOVEMENT_DURATION = 3;
 
-// Percentage allocated to entrance
+// Entrance percentage
 const TEXT_ENTER_RATIO = 0.3;
 const TEXT_EXIT_RATIO = 1 - TEXT_ENTER_RATIO;
 
@@ -57,12 +57,17 @@ function Hero() {
     let resizeHandler;
 
     const setupAnimation = () => {
-      if (!video.duration || timeline) return;
+      if (!Number.isFinite(video.duration) || video.duration <= 0 || timeline) {
+        return;
+      }
 
       const leftText = leftTextRef.current;
       const rightText = rightTextRef.current;
 
       if (!leftText || !rightText) return;
+
+      video.pause();
+      video.currentTime = 0;
 
       const enterDuration = TEXT_MOVEMENT_DURATION * TEXT_ENTER_RATIO;
 
@@ -114,21 +119,9 @@ function Hero() {
           end: "bottom bottom",
           scrub: 0.8,
           invalidateOnRefresh: true,
-          onUpdate: updateFadeMask,
           onRefresh: updateFadeMask,
         },
       });
-
-      // BIKE VIDEO
-      timeline.to(
-        video,
-        {
-          currentTime: video.duration,
-          ease: "none",
-          duration: 1,
-        },
-        0,
-      );
 
       // =========================================
       // TEXT ENTRANCE
@@ -184,6 +177,23 @@ function Hero() {
         },
         enterDuration,
       );
+
+      // Match the video's full seek range to the complete master timeline.
+      const animationDuration = timeline.duration();
+
+      timeline.to(
+        video,
+        {
+          currentTime: video.duration,
+          ease: "none",
+          duration: animationDuration,
+        },
+        0,
+      );
+
+      // Keep the position-based mask in step with the scrubbed timeline,
+      // rather than recalculating it independently on every scroll event.
+      timeline.eventCallback("onUpdate", updateFadeMask);
 
       // =========================================
       // KEEP FADE LINE ALIGNED
